@@ -3,13 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <title>Hillary Kusumo Portfolio</title>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Animated Background Library -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
       margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: #0f172a;
+    }
+
+    .content {
       padding: 40px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #3b82f6;
+      margin-bottom: 15px;
+    }
+
+    .name {
+      font-size: 32px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .info a {
+      color: #3b82f6;
+      text-decoration: none;
+      margin: 0 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .info a:hover {
+      color: #60a5fa;
     }
 
     .container {
@@ -19,19 +69,20 @@
     }
 
     .card {
-      background: #1e293b;
+      background: rgba(30, 41, 59, 0.8);
       padding: 30px;
       border-radius: 12px;
       text-align: center;
       transition: 0.3s;
+      backdrop-filter: blur(6px);
     }
 
     .card:hover {
-      transform: scale(1.05);
+      transform: translateY(-8px) scale(1.03);
     }
 
     h2 {
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
 
     p {
@@ -57,29 +108,68 @@
 
 <body>
 
-  <h1>My Portfolio</h1>
+  <!-- Animated Background -->
+  <div id="particles-js"></div>
 
-  <div class="container">
+  <div class="content">
 
-    <!-- Resume Card -->
-    <div class="card">
-      <h2>Resume</h2>
-      <p>View my professional experience, skills, and background.</p>
-      <a class="btn" href="https://drive.google.com/file/d/1gRUr3Y4En71HGnATofre68AUSJkKgrbN/view?usp=sharing" target="_blank">
-        View Resume
-      </a>
+    <!-- HEADER -->
+    <div class="header">
+
+      <img src="https://via.placeholder.com/150" class="profile-pic">
+
+      <div class="name">HILLARY CLARENCE KUSUMO</div>
+
+      <div class="info">
+        <a href="https://www.linkedin.com/in/hillary-kusumo-b66913178/?skipRedirect=true" target="_blank">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+
+        <a href="mailto:clarohillary@gmail.com">
+          <i class="fas fa-envelope"></i> clarohillary@gmail.com
+        </a>
+
+        <a href="mailto:Hillaryclaro@gmail.com">
+          <i class="fas fa-envelope"></i> Hillaryclaro@gmail.com
+        </a>
+      </div>
+
     </div>
 
-    <!-- Certificate Card -->
-    <div class="card">
-      <h2>Micro 1 Certificate</h2>
-      <p>Proof of my training and certification in annotation and evaluation.</p>
-      <a class="btn" href="https://drive.google.com/file/d/1jIfqd8ttvwceigDHtd4HyttNUr652OtC/view?usp=sharing" target="_blank">
-        View Certificate
-      </a>
+    <!-- CARDS -->
+    <div class="container">
+
+      <div class="card">
+        <h2>Resume</h2>
+        <p>View my professional experience and skills.</p>
+        <a class="btn" href="https://drive.google.com/file/d/1gRUr3Y4En71HGnATofre68AUSJkKgrbN/view?usp=sharing" target="_blank">
+          View Resume
+        </a>
+      </div>
+
+      <div class="card">
+        <h2>Micro 1 Certificate</h2>
+        <p>Proof of my annotation and evaluation training.</p>
+        <a class="btn" href="https://drive.google.com/file/d/1jIfqd8ttvwceigDHtd4HyttNUr652OtC/view?usp=sharing" target="_blank">
+          View Certificate
+        </a>
+      </div>
+
     </div>
 
   </div>
+
+  <!-- Particles Config -->
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80 },
+        size: { value: 3 },
+        move: { speed: 1 },
+        line_linked: { enable: true },
+      }
+    });
+  </script>
 
 </body>
 </html>
