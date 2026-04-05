@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <title>Hillary Kusumo Portfolio</title>
 
-  <!-- Icons -->
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- Animated Background Library -->
+  <!-- Particles background -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 
   <style>
@@ -15,6 +15,7 @@
       margin: 0;
       font-family: Arial, sans-serif;
       color: white;
+      background: #0f172a;
       overflow-x: hidden;
     }
 
@@ -23,7 +24,6 @@
       width: 100%;
       height: 100%;
       z-index: -1;
-      background: #0f172a;
     }
 
     .content {
@@ -64,7 +64,7 @@
 
     .container {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
     }
 
@@ -85,6 +85,12 @@
       width: 100%;
       border-radius: 8px;
       margin-bottom: 15px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .card img:hover {
+      transform: scale(1.05);
     }
 
     h2 {
@@ -116,29 +122,107 @@
     .btn:hover {
       background: #2563eb;
     }
+
+    /* Annotation images with captions */
+    .annotation-images {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
+    .annotation-images .image-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .annotation-images img {
+      width: 100px;
+      border-radius: 6px;
+    }
+
+    .annotation-images .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      font-size: 10px;
+      text-align: center;
+      padding: 2px 0;
+      opacity: 0;
+      transition: opacity 0.2s;
+      border-radius: 0 0 6px 6px;
+    }
+
+    .image-wrapper:hover .caption {
+      opacity: 1;
+    }
+
+    @media (max-width: 500px) {
+      .annotation-images img {
+        width: 80px;
+      }
+    }
+
+    /* LIGHTBOX STYLES */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+
+    .lightbox img {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80%;
+    }
+
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #bbb;
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- Animated Background -->
   <div id="particles-js"></div>
 
   <div class="content">
 
     <!-- HEADER -->
     <div class="header">
-      <img src="https://via.placeholder.com/150" class="profile-pic" alt="Profile Photo">
+      <img src="Images/profile.jpg" class="profile-pic" alt="Profile Photo">
       <div class="name">HILLARY CLARENCE KUSUMO</div>
       <div class="info">
         <a href="https://www.linkedin.com/in/hillary-kusumo-b66913178/?skipRedirect=true" target="_blank">
-          <i class="fab fa-linkedin"></i> LinkedIn
+          <i class="fab fa-linkedin"></i> LINKEDIN
         </a>
         <a href="mailto:clarohillary@gmail.com">
-          <i class="fas fa-envelope"></i> clarohillary@gmail.com
+          <i class="fas fa-envelope"></i> CLAROHILLARY@GMAIL.COM
         </a>
         <a href="mailto:Hillaryclaro@gmail.com">
-          <i class="fas fa-envelope"></i> Hillaryclaro@gmail.com
+          <i class="fas fa-envelope"></i> HILLARYCLARO@GMAIL.COM
         </a>
       </div>
     </div>
@@ -146,38 +230,91 @@
     <!-- CARDS -->
     <div class="container">
 
+      <!-- Resume Card -->
       <div class="card">
         <h2>Resume</h2>
         <p>View my professional experience and skills.</p>
         <a class="btn" href="https://drive.google.com/file/d/1gRUr3Y4En71HGnATofre68AUSJkKgrbN/view?usp=sharing" target="_blank">View Resume</a>
       </div>
 
+      <!-- Certificate Card -->
       <div class="card">
         <h2>Micro 1 Certificate</h2>
         <p>Proof of my annotation and evaluation training.</p>
         <a class="btn" href="https://drive.google.com/file/d/1jIfqd8ttvwceigDHtd4HyttNUr652OtC/view?usp=sharing" target="_blank">View Certificate</a>
       </div>
 
+      <!-- Rodeo Annotation Project -->
       <div class="card">
-        <img src="https://via.placeholder.com/300x150?text=Rodeo+Annotation" alt="Rodeo Annotation Thumbnail">
         <h2>Rodeo Annotation Project</h2>
-        <p>Annotated rodeo videos in COCO JSON format. Covered:</p>
+        <p>Annotated rodeo videos in COCO JSON format. Click thumbnails to view larger images:</p>
+
+        <div class="annotation-images">
+          <div class="image-wrapper">
+            <img src="Images/0.png" alt="Rodeo Image 0">
+            <div class="caption">0.png</div>
+          </div>
+          <div class="image-wrapper">
+            <img src="Images/1.png" alt="Rodeo Image 1">
+            <div class="caption">1.png</div>
+          </div>
+          <div class="image-wrapper">
+            <img src="Images/2.png" alt="Rodeo Image 2">
+            <div class="caption">2.png</div>
+          </div>
+          <div class="image-wrapper">
+            <img src="Images/3.png" alt="Rodeo Image 3">
+            <div class="caption">3.png</div>
+          </div>
+          <div class="image-wrapper">
+            <img src="Images/4.png" alt="Rodeo Image 4">
+            <div class="caption">4.png</div>
+          </div>
+          <div class="image-wrapper">
+            <img src="Images/5.png" alt="Rodeo Image 5">
+            <div class="caption">5.png</div>
+          </div>
+          <div class="image-wrapper">
+            <img src="Images/6.png" alt="Rodeo Image 6">
+            <div class="caption">6.png</div>
+          </div>
+          <div class="image-wrapper">
+            <img src="Images/7.png" alt="Rodeo Image 7">
+            <div class="caption">7.png</div>
+          </div>
+          <div class="image-wrapper">
+            <img src="Images/8.png" alt="Rodeo Image 8">
+            <div class="caption">8.png</div>
+          </div>
+          <div class="image-wrapper">
+            <img src="Images/9.png" alt="Rodeo Image 9">
+            <div class="caption">9.png</div>
+          </div>
+        </div>
+
         <ul>
-          <li><strong>Barrel Racing:</strong> Bounding boxes for horse, rider, barrel, and visible objects at 30fps.</li>
+          <li><strong>Barrel Racing:</strong> Bounding boxes for horse, rider, barrels, and visible objects at 30fps.</li>
           <li><strong>Bull/Bareback/Saddle Bronc Riding:</strong> Bounding boxes and keypoints for riders, animals, pickup riders, and non-bucking horses.</li>
-          <li><strong>Keypoints:</strong> COCO format for persons (head, shoulders, elbows, wrists, hips, knees, ankles) and animals (nose, horns/ears, withers, mid-back, loin, tail base, limb joints, hooves).</li>
-          <li><strong>Edge Cases:</strong> Overlapping objects, partial occlusion, motion blur, small objects, riders fallen off.</li>
+          <li><strong>Keypoints:</strong> COCO format for persons and animals.</li>
+          <li><strong>Edge Cases:</strong> Overlapping objects, occlusion, motion blur, small objects, riders fallen off.</li>
           <li><strong>Consistency:</strong> Maintain same IDs across frames for objects and keypoints.</li>
         </ul>
+
         <a class="btn" href="YOUR_PROJECT_LINK_HERE" target="_blank">View Project</a>
       </div>
 
     </div>
-
   </div>
 
-  <!-- Particles Config -->
+  <!-- LIGHTBOX HTML -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img id="lightbox-img" src="">
+  </div>
+
+  <!-- Scripts -->
   <script>
+    // Particles.js
     particlesJS("particles-js", {
       particles: {
         number: { value: 80 },
@@ -186,7 +323,27 @@
         line_linked: { enable: true },
       }
     });
-  </script>
 
+    // Lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const images = document.querySelectorAll(".annotation-images img");
+    const close = document.querySelector(".close");
+
+    images.forEach(img => {
+      img.addEventListener("click", () => {
+        lightbox.style.display = "block";
+        lightboxImg.src = img.src;
+      });
+    });
+
+    close.addEventListener("click", () => {
+      lightbox.style.display = "none";
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if(e.target === lightbox) lightbox.style.display = "none";
+    });
+  </script>
 </body>
 </html>
