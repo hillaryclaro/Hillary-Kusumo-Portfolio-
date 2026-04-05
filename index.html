@@ -4,10 +4,7 @@
   <meta charset="UTF-8">
   <title>Hillary Kusumo Portfolio</title>
 
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <!-- Particles background -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 
   <style>
@@ -26,47 +23,14 @@
       z-index: -1;
     }
 
-    .content {
-      padding: 40px;
-    }
+    .content { padding: 40px; }
+    .header { text-align: center; margin-bottom: 50px; }
+    .profile-pic { width: 120px; height: 120px; border-radius: 50%; border: 3px solid #3b82f6; margin-bottom: 15px; }
+    .name { font-size: 32px; font-weight: bold; letter-spacing: 2px; }
+    .info a { color: #3b82f6; text-decoration: none; margin: 0 10px; display: inline-flex; align-items: center; gap: 6px; }
+    .info a:hover { color: #60a5fa; }
 
-    .header {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-
-    .profile-pic {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 3px solid #3b82f6;
-      margin-bottom: 15px;
-    }
-
-    .name {
-      font-size: 32px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-
-    .info a {
-      color: #3b82f6;
-      text-decoration: none;
-      margin: 0 10px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .info a:hover {
-      color: #60a5fa;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
+    .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
 
     .card {
       background: rgba(30, 41, 59, 0.8);
@@ -75,73 +39,36 @@
       text-align: center;
       transition: 0.3s;
       backdrop-filter: blur(6px);
-    }
-
-    .card:hover {
-      transform: translateY(-8px) scale(1.03);
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 15px;
       cursor: pointer;
-      transition: transform 0.2s;
     }
 
-    .card img:hover {
-      transform: scale(1.05);
-    }
+    .card:hover { transform: translateY(-8px) scale(1.03); }
+    .card img { width: 100%; border-radius: 8px; margin-bottom: 15px; transition: transform 0.2s; }
+    .card img:hover { transform: scale(1.05); }
 
-    h2 {
-      margin-bottom: 10px;
-    }
+    h2 { margin-bottom: 10px; }
+    p { font-size: 14px; color: #cbd5f5; }
+    ul { text-align: left; font-size: 14px; margin-left: 20px; color: #cbd5f5; }
+    .btn { display: inline-block; margin-top: 20px; padding: 12px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 8px; }
+    .btn:hover { background: #2563eb; }
 
-    p {
-      font-size: 14px;
-      color: #cbd5f5;
-    }
+    /* Collapsible content */
+    .collapse-content { display: none; margin-top: 15px; text-align: left; }
 
-    ul {
-      text-align: left;
-      font-size: 14px;
-      margin-left: 20px;
-      color: #cbd5f5;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: #3b82f6;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-    }
-
-    .btn:hover {
-      background: #2563eb;
-    }
-
-    /* Annotation images with captions */
+    /* Scrollable images */
     .annotation-images {
       display: flex;
       gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 15px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
     }
+    .annotation-images::-webkit-scrollbar { height: 8px; }
+    .annotation-images::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
+    .annotation-images::-webkit-scrollbar-track { background: #1e293b; }
 
-    .annotation-images .image-wrapper {
-      position: relative;
-      display: inline-block;
-    }
-
-    .annotation-images img {
-      width: 100px;
-      border-radius: 6px;
-    }
-
+    .annotation-images .image-wrapper { position: relative; display: inline-block; flex: 0 0 auto; }
+    .annotation-images img { width: 120px; border-radius: 6px; cursor: pointer; }
     .annotation-images .caption {
       position: absolute;
       bottom: 0;
@@ -156,140 +83,66 @@
       transition: opacity 0.2s;
       border-radius: 0 0 6px 6px;
     }
+    .image-wrapper:hover .caption { opacity: 1; }
 
-    .image-wrapper:hover .caption {
-      opacity: 1;
-    }
-
-    @media (max-width: 500px) {
-      .annotation-images img {
-        width: 80px;
-      }
-    }
+    @media (max-width: 500px) { .annotation-images img { width: 80px; } }
 
     /* LIGHTBOX STYLES */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      padding-top: 60px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.9);
-    }
+    .lightbox { display: none; position: fixed; z-index: 9999; padding-top: 60px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); }
+    .lightbox img { margin: auto; display: block; max-width: 90%; max-height: 80%; }
+    .close { position: absolute; top: 30px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
+    .close:hover { color: #bbb; }
 
-    .lightbox img {
-      margin: auto;
-      display: block;
-      max-width: 90%;
-      max-height: 80%;
-    }
-
-    .close {
-      position: absolute;
-      top: 30px;
-      right: 35px;
-      color: #fff;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover {
-      color: #bbb;
-    }
   </style>
 </head>
 
 <body>
+<div id="particles-js"></div>
 
-  <div id="particles-js"></div>
+<div class="content">
+  <!-- HEADER -->
+  <div class="header">
+    <img src="Images/profile.jpg" class="profile-pic" alt="Profile Photo">
+    <div class="name">HILLARY CLARENCE KUSUMO</div>
+    <div class="info">
+      <a href="https://www.linkedin.com/in/hillary-kusumo-b66913178/?skipRedirect=true" target="_blank"><i class="fab fa-linkedin"></i> LINKEDIN</a>
+      <a href="mailto:clarohillary@gmail.com"><i class="fas fa-envelope"></i> CLAROHILLARY@GMAIL.COM</a>
+      <a href="mailto:Hillaryclaro@gmail.com"><i class="fas fa-envelope"></i> HILLARYCLARO@GMAIL.COM</a>
+    </div>
+  </div>
 
-  <div class="content">
-
-    <!-- HEADER -->
-    <div class="header">
-      <img src="Images/profile.jpg" class="profile-pic" alt="Profile Photo">
-      <div class="name">HILLARY CLARENCE KUSUMO</div>
-      <div class="info">
-        <a href="https://www.linkedin.com/in/hillary-kusumo-b66913178/?skipRedirect=true" target="_blank">
-          <i class="fab fa-linkedin"></i> LINKEDIN
-        </a>
-        <a href="mailto:clarohillary@gmail.com">
-          <i class="fas fa-envelope"></i> CLAROHILLARY@GMAIL.COM
-        </a>
-        <a href="mailto:Hillaryclaro@gmail.com">
-          <i class="fas fa-envelope"></i> HILLARYCLARO@GMAIL.COM
-        </a>
-      </div>
+  <!-- CARDS -->
+  <div class="container">
+    <!-- Resume -->
+    <div class="card">
+      <h2>Resume</h2>
+      <p>View my professional experience and skills.</p>
+      <a class="btn" href="https://drive.google.com/file/d/1gRUr3Y4En71HGnATofre68AUSJkKgrbN/view?usp=sharing" target="_blank">View Resume</a>
     </div>
 
-    <!-- CARDS -->
-    <div class="container">
+    <!-- Certificate -->
+    <div class="card">
+      <h2>Micro 1 Certificate</h2>
+      <p>Proof of my annotation and evaluation training.</p>
+      <a class="btn" href="https://drive.google.com/file/d/1jIfqd8ttvwceigDHtd4HyttNUr652OtC/view?usp=sharing" target="_blank">View Certificate</a>
+    </div>
 
-      <!-- Resume Card -->
-      <div class="card">
-        <h2>Resume</h2>
-        <p>View my professional experience and skills.</p>
-        <a class="btn" href="https://drive.google.com/file/d/1gRUr3Y4En71HGnATofre68AUSJkKgrbN/view?usp=sharing" target="_blank">View Resume</a>
-      </div>
-
-      <!-- Certificate Card -->
-      <div class="card">
-        <h2>Micro 1 Certificate</h2>
-        <p>Proof of my annotation and evaluation training.</p>
-        <a class="btn" href="https://drive.google.com/file/d/1jIfqd8ttvwceigDHtd4HyttNUr652OtC/view?usp=sharing" target="_blank">View Certificate</a>
-      </div>
-
-      <!-- Rodeo Annotation Project -->
-      <div class="card">
-        <h2>Rodeo Annotation Project</h2>
-        <p>Annotated rodeo videos in COCO JSON format. Click thumbnails to view larger images:</p>
-
+    <!-- Annotation -->
+    <div class="card" id="annotationCard">
+      <h2>Rodeo Annotation Project</h2>
+      <p>Click to view images and guidelines.</p>
+      <div class="collapse-content" id="annotationContent">
         <div class="annotation-images">
-          <div class="image-wrapper">
-            <img src="Images/0.png" alt="Rodeo Image 0">
-            <div class="caption">0.png</div>
-          </div>
-          <div class="image-wrapper">
-            <img src="Images/1.png" alt="Rodeo Image 1">
-            <div class="caption">1.png</div>
-          </div>
-          <div class="image-wrapper">
-            <img src="Images/2.png" alt="Rodeo Image 2">
-            <div class="caption">2.png</div>
-          </div>
-          <div class="image-wrapper">
-            <img src="Images/3.png" alt="Rodeo Image 3">
-            <div class="caption">3.png</div>
-          </div>
-          <div class="image-wrapper">
-            <img src="Images/4.png" alt="Rodeo Image 4">
-            <div class="caption">4.png</div>
-          </div>
-          <div class="image-wrapper">
-            <img src="Images/5.png" alt="Rodeo Image 5">
-            <div class="caption">5.png</div>
-          </div>
-          <div class="image-wrapper">
-            <img src="Images/6.png" alt="Rodeo Image 6">
-            <div class="caption">6.png</div>
-          </div>
-          <div class="image-wrapper">
-            <img src="Images/7.png" alt="Rodeo Image 7">
-            <div class="caption">7.png</div>
-          </div>
-          <div class="image-wrapper">
-            <img src="Images/8.png" alt="Rodeo Image 8">
-            <div class="caption">8.png</div>
-          </div>
-          <div class="image-wrapper">
-            <img src="Images/9.png" alt="Rodeo Image 9">
-            <div class="caption">9.png</div>
-          </div>
+          <div class="image-wrapper"><img src="Images/0.png"><div class="caption">0.png</div></div>
+          <div class="image-wrapper"><img src="Images/1.png"><div class="caption">1.png</div></div>
+          <div class="image-wrapper"><img src="Images/2.png"><div class="caption">2.png</div></div>
+          <div class="image-wrapper"><img src="Images/3.png"><div class="caption">3.png</div></div>
+          <div class="image-wrapper"><img src="Images/4.png"><div class="caption">4.png</div></div>
+          <div class="image-wrapper"><img src="Images/5.png"><div class="caption">5.png</div></div>
+          <div class="image-wrapper"><img src="Images/6.png"><div class="caption">6.png</div></div>
+          <div class="image-wrapper"><img src="Images/7.png"><div class="caption">7.png</div></div>
+          <div class="image-wrapper"><img src="Images/8.png"><div class="caption">8.png</div></div>
+          <div class="image-wrapper"><img src="Images/9.png"><div class="caption">9.png</div></div>
         </div>
 
         <ul>
@@ -299,51 +152,43 @@
           <li><strong>Edge Cases:</strong> Overlapping objects, occlusion, motion blur, small objects, riders fallen off.</li>
           <li><strong>Consistency:</strong> Maintain same IDs across frames for objects and keypoints.</li>
         </ul>
-
-        <a class="btn" href="YOUR_PROJECT_LINK_HERE" target="_blank">View Project</a>
       </div>
-
     </div>
   </div>
+</div>
 
-  <!-- LIGHTBOX HTML -->
-  <div id="lightbox" class="lightbox">
-    <span class="close">&times;</span>
-    <img id="lightbox-img" src="">
-  </div>
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="">
+</div>
 
-  <!-- Scripts -->
-  <script>
-    // Particles.js
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 80 },
-        size: { value: 3 },
-        move: { speed: 1 },
-        line_linked: { enable: true },
-      }
+<script>
+  // Particles
+  particlesJS("particles-js", {particles:{number:{value:80},size:{value:3},move:{speed:1},line_linked:{enable:true}}});
+
+  // Lightbox
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const images = document.querySelectorAll(".annotation-images img");
+  const close = document.querySelector(".close");
+
+  images.forEach(img => {
+    img.addEventListener("click", () => {
+      lightbox.style.display = "block";
+      lightboxImg.src = img.src;
     });
+  });
+  close.addEventListener("click", () => lightbox.style.display = "none");
+  lightbox.addEventListener("click", (e) => { if(e.target===lightbox) lightbox.style.display="none"; });
 
-    // Lightbox
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
-    const images = document.querySelectorAll(".annotation-images img");
-    const close = document.querySelector(".close");
+  // Collapsible Annotation Card
+  const annotationCard = document.getElementById("annotationCard");
+  const annotationContent = document.getElementById("annotationContent");
 
-    images.forEach(img => {
-      img.addEventListener("click", () => {
-        lightbox.style.display = "block";
-        lightboxImg.src = img.src;
-      });
-    });
-
-    close.addEventListener("click", () => {
-      lightbox.style.display = "none";
-    });
-
-    lightbox.addEventListener("click", (e) => {
-      if(e.target === lightbox) lightbox.style.display = "none";
-    });
-  </script>
+  annotationCard.addEventListener("click", () => {
+    annotationContent.style.display = annotationContent.style.display==="block"?"none":"block";
+  });
+</script>
 </body>
 </html>
