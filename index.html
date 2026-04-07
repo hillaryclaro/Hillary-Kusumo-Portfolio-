@@ -8,67 +8,90 @@
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 
 <style>
-body { margin:0; font-family:Arial; background:#0f172a; color:white; }
-#particles-js { position:fixed; width:100%; height:100%; z-index:-1; }
+body {
+  margin:0;
+  font-family:Arial;
+  background:#0f172a;
+  color:white;
+}
+
+#particles-js {
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-1;
+}
 
 .content { padding:40px; }
-.container { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
 
-.card { background:#1e293b; padding:20px; border-radius:12px; cursor:pointer; }
-.card img { width:100%; border-radius:8px; }
+.container {
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:30px;
+}
 
-.collapse-content { display:none; margin-top:15px; }
+.card {
+  background:#1e293b;
+  padding:20px;
+  border-radius:12px;
+  cursor:pointer;
+}
 
-.video-grid { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+.card img {
+  width:100%;
+  border-radius:8px;
+  margin-bottom:10px;
+}
 
-video { width:100%; border-radius:8px; }
+.collapse-content {
+  display:none;
+  margin-top:10px;
+}
 
-.sync-btn {
-  margin:10px 0;
+.video-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+video {
+  width:100%;
+  border-radius:8px;
+}
+
+.btn {
+  display:block;
+  margin-top:10px;
   padding:10px;
   background:#3b82f6;
-  border:none;
   color:white;
-  cursor:pointer;
+  text-align:center;
   border-radius:6px;
-  width:100%;
+  text-decoration:none;
 }
 
-/* Slider */
+/* slider */
 .slider-container {
-  position: relative;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.slider-video {
-  position: absolute;
-  width: 100%;
-  height: auto;
-  top: 0;
-  left: 0;
-}
-
-.slider-video video {
-  width: 100%;
+  position:relative;
+  margin-top:15px;
 }
 
 .slider-overlay {
-  position: absolute;
-  width: 50%;
-  overflow: hidden;
-  top: 0;
-  left: 0;
+  position:absolute;
+  top:0;
+  left:0;
+  width:50%;
+  overflow:hidden;
 }
 
 .slider-bar {
-  position: absolute;
-  width: 4px;
-  background: #3b82f6;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  cursor: ew-resize;
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:4px;
+  background:#3b82f6;
+  left:50%;
+  cursor:pointer;
 }
 </style>
 </head>
@@ -77,48 +100,69 @@ video { width:100%; border-radius:8px; }
 <div id="particles-js"></div>
 
 <div class="content">
+
 <div class="container">
 
-<!-- Evaluation Card -->
+<!-- Resume -->
+<div class="card">
+  <img src="Resume Thumbnail.png">
+  <h2>Resume</h2>
+  <a class="btn" href="https://drive.google.com/file/d/1gRUr3Y4En71HGnATofre68AUSJkKgrbN/view" target="_blank">View Resume</a>
+</div>
+
+<!-- Certificate -->
+<div class="card">
+  <img src="Certificate Thumbnail.png">
+  <h2>Micro 1 Certificate</h2>
+  <a class="btn" href="https://drive.google.com/file/d/1jIfqd8ttvwceigDHtd4HyttNUr652OtC/view" target="_blank">View Certificate</a>
+</div>
+
+<!-- Annotation -->
+<div class="card" id="annotationCard">
+  <img src="Images/0.png">
+  <h2>Annotation Project</h2>
+
+  <div class="collapse-content" id="annotationContent">
+    <video controls>
+      <source src="cvat_project.mp4">
+    </video>
+  </div>
+</div>
+
+<!-- Evaluation -->
 <div class="card" id="evaluationCard">
-<img src="Thumbnail.png">
-<h2>Video & Image Evaluation</h2>
+  <img src="Thumbnail.png">
+  <h2>Video & Image Evaluation</h2>
 
-<div class="collapse-content" id="evaluationContent">
+  <div class="collapse-content" id="evaluationContent">
 
-<button class="sync-btn" onclick="playSync()">Play Both Videos</button>
+    <button class="btn" onclick="playSync(event)">Play Both Videos</button>
 
-<div class="video-grid">
-  <video id="vid1" controls>
-    <source src="video 1.mp4">
-  </video>
+    <div class="video-grid">
+      <video id="vid1" controls>
+        <source src="video 1.mp4">
+      </video>
 
-  <video id="vid2" controls>
-    <source src="video 2.mp4">
-  </video>
-</div>
+      <video id="vid2" controls>
+        <source src="video 2.mp4">
+      </video>
+    </div>
 
-<h3>Slider Comparison</h3>
+    <h3>Slider Comparison</h3>
 
-<div class="slider-container" id="slider">
+    <div class="slider-container" id="slider">
 
-  <div class="slider-video">
-    <video id="baseVideo" muted loop>
-      <source src="video 1.mp4">
-    </video>
+      <video src="video 1.mp4" autoplay muted loop></video>
+
+      <div class="slider-overlay" id="overlay">
+        <video src="video 2.mp4" autoplay muted loop></video>
+      </div>
+
+      <div class="slider-bar" id="sliderBar"></div>
+
+    </div>
+
   </div>
-
-  <div class="slider-overlay" id="overlay">
-    <video id="topVideo" muted loop>
-      <source src="video 2.mp4">
-    </video>
-  </div>
-
-  <div class="slider-bar" id="sliderBar"></div>
-
-</div>
-
-</div>
 </div>
 
 </div>
@@ -127,47 +171,63 @@ video { width:100%; border-radius:8px; }
 <script>
 particlesJS("particles-js",{particles:{number:{value:80},size:{value:3},move:{speed:1},line_linked:{enable:true}}})
 
-const evaluationCard = document.getElementById("evaluationCard")
-const evaluationContent = document.getElementById("evaluationContent")
+/* Annotation toggle */
+const annotationCard=document.getElementById("annotationCard")
+const annotationContent=document.getElementById("annotationContent")
 
-evaluationCard.onclick = () => {
-  evaluationContent.style.display = evaluationContent.style.display === "block" ? "none" : "block"
-}
+annotationCard.addEventListener("click",()=>{
+  annotationContent.style.display =
+  annotationContent.style.display==="block"?"none":"block"
+})
 
-/* Sync Play */
-function playSync(){
-  const v1 = document.getElementById("vid1")
-  const v2 = document.getElementById("vid2")
-  v1.currentTime = 0
-  v2.currentTime = 0
+annotationContent.addEventListener("click",e=>e.stopPropagation())
+
+/* Evaluation toggle */
+const evaluationCard=document.getElementById("evaluationCard")
+const evaluationContent=document.getElementById("evaluationContent")
+
+evaluationCard.addEventListener("click",()=>{
+  evaluationContent.style.display =
+  evaluationContent.style.display==="block"?"none":"block"
+})
+
+evaluationContent.addEventListener("click",e=>e.stopPropagation())
+
+/* Sync play */
+function playSync(e){
+  e.stopPropagation()
+  const v1=document.getElementById("vid1")
+  const v2=document.getElementById("vid2")
+
+  v1.currentTime=0
+  v2.currentTime=0
+
   v1.play()
   v2.play()
 }
 
-/* Slider Logic */
-const slider = document.getElementById("slider")
-const overlay = document.getElementById("overlay")
-const bar = document.getElementById("sliderBar")
+/* slider */
+const slider=document.getElementById("slider")
+const overlay=document.getElementById("overlay")
+const bar=document.getElementById("sliderBar")
 
-let dragging = false
+let dragging=false
 
-bar.addEventListener("mousedown", () => dragging = true)
-window.addEventListener("mouseup", () => dragging = false)
+bar.addEventListener("mousedown",()=>dragging=true)
+window.addEventListener("mouseup",()=>dragging=false)
 
-window.addEventListener("mousemove", (e) => {
-  if (!dragging) return
-  const rect = slider.getBoundingClientRect()
-  let x = e.clientX - rect.left
-  if (x < 0) x = 0
-  if (x > rect.width) x = rect.width
+window.addEventListener("mousemove",(e)=>{
+  if(!dragging) return
 
-  overlay.style.width = x + "px"
-  bar.style.left = x + "px"
+  const rect=slider.getBoundingClientRect()
+  let x=e.clientX-rect.left
+
+  if(x<0) x=0
+  if(x>rect.width) x=rect.width
+
+  overlay.style.width=x+"px"
+  bar.style.left=x+"px"
 })
-
-/* autoplay slider videos */
-document.getElementById("baseVideo").play()
-document.getElementById("topVideo").play()
 </script>
 
 </body>
