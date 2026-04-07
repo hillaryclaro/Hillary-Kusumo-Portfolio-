@@ -37,7 +37,10 @@ body {
   border-radius:10px;
   cursor:pointer;
   text-align:center;
+  transition:0.2s;
 }
+
+.card:hover { transform:scale(1.03); }
 
 .card img {
   width:100%;
@@ -70,7 +73,21 @@ body {
   margin-bottom:20px;
 }
 
-/* SMALL VIDEOS */
+/* sections */
+.section-box {
+  background:#1e293b;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:20px;
+  max-width:900px;
+}
+
+.section-box h3 {
+  margin-top:0;
+  color:#60a5fa;
+}
+
+/* videos */
 .video-grid {
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -85,20 +102,18 @@ body {
   border-radius:8px;
 }
 
-.btn {
-  margin:10px 0;
-  padding:10px;
+/* highlight */
+.highlight {
   background:#3b82f6;
-  color:white;
-  border:none;
-  cursor:pointer;
-  border-radius:6px;
+  padding:15px;
+  border-radius:10px;
+  margin-top:15px;
 }
 
 /* slider */
-.slider-container { 
-  position:relative; 
-  margin-top:20px; 
+.slider-container {
+  position:relative;
+  margin-top:20px;
   max-width:600px;
 }
 
@@ -125,10 +140,15 @@ body {
   cursor:pointer;
 }
 
-/* text */
-.section {
-  max-width:800px;
-  line-height:1.6;
+/* button */
+.btn {
+  margin:10px 0;
+  padding:10px;
+  background:#3b82f6;
+  color:white;
+  border:none;
+  cursor:pointer;
+  border-radius:6px;
 }
 </style>
 </head>
@@ -139,23 +159,27 @@ body {
 <div class="content">
 <div class="container">
 
+<!-- Resume -->
 <div class="card">
 <img src="Resume Thumbnail.png">
 <h3>Resume</h3>
 <a href="https://drive.google.com/file/d/1gRUr3Y4En71HGnATofre68AUSJkKgrbN/view" target="_blank">Open</a>
 </div>
 
+<!-- Certificate -->
 <div class="card">
 <img src="Certificate Thumbnail.png">
 <h3>Certificate</h3>
 <a href="https://drive.google.com/file/d/1jIfqd8ttvwceigDHtd4HyttNUr652OtC/view" target="_blank">Open</a>
 </div>
 
+<!-- Annotation -->
 <div class="card" onclick="openOverlay('annotationOverlay')">
 <img src="Images/0.png">
 <h3>Annotation Project</h3>
 </div>
 
+<!-- Evaluation -->
 <div class="card" onclick="openOverlay('evaluationOverlay')">
 <img src="Thumbnail.png">
 <h3>Video & Image Evaluation</h3>
@@ -164,39 +188,40 @@ body {
 </div>
 </div>
 
-<!-- ANNOTATION -->
+<!-- ANNOTATION OVERLAY -->
 <div class="overlay" id="annotationOverlay">
 <button class="close-btn" onclick="closeOverlay('annotationOverlay')">Close</button>
 
+<div class="section-box">
 <h2>Annotation Project</h2>
 <video controls style="max-width:600px;">
 <source src="cvat_project.mp4">
 </video>
 </div>
+</div>
 
-<!-- EVALUATION -->
+<!-- EVALUATION OVERLAY -->
 <div class="overlay" id="evaluationOverlay">
 <button class="close-btn" onclick="closeOverlay('evaluationOverlay')">Close</button>
 
-<div class="section">
-
+<div class="section-box">
 <h2>Image & Video Evaluation Project</h2>
+<p>
+In this project I applied structured QA workflows to evaluate both images and videos.
+Focus remained on instruction accuracy, visual quality, and usability.
+</p>
+</div>
 
-<p>In my portfolio, I showcase a project where I applied structured, rubric-driven QA workflows to both images and videos. My role was to evaluate outputs for instruction-following accuracy, visual integrity, and overall usability, ensuring that they met professional standards while remaining relatable to end users.</p>
-
+<div class="section-box">
 <h3>Image Evaluation</h3>
-
-<p>I began with image evaluation, where I compared edited and generated images against prompts. My process included:</p>
-
 <ul>
-<li>Reviewing defect catalogs to identify issues such as banding, spotting, dissolving edges, replicated features, and illogical compositions.</li>
-<li>Assessing instruction compliance while judging visual quality.</li>
-<li>Avoiding ties and giving clear justification.</li>
-<li>Selecting the overall best image based on confidence to share publicly.</li>
+<li>Checked defects like banding, distortion, and unrealistic edits</li>
+<li>Compared outputs against prompts</li>
+<li>Selected best image based on realism and clarity</li>
 </ul>
+</div>
 
-<p>This helped me judge realism and quality beyond instruction accuracy.</p>
-
+<div class="section-box">
 <h3>Video Evaluation</h3>
 
 <button class="btn" onclick="playSync()">Play Both Videos</button>
@@ -211,8 +236,24 @@ body {
 </video>
 </div>
 
-<p>I compared videos based on motion quality, audio clarity, and consistency. I selected Video 2 due to smoother motion and better audio sync.</p>
+<p>
+Evaluation focused on motion quality, audio clarity, and consistency.
+Video 1 showed smoother transitions across frames.
+Movement remained stable with no abrupt changes.
+Audio stayed aligned with visuals and remained clear throughout.
 
+Video 2 introduced slight inconsistencies in motion and less stable audio sync.
+These differences affected realism and overall viewing quality.
+</p>
+
+<div class="highlight">
+Final Decision: Video 1 selected.  
+Reason: smoother motion, stable transitions, and clear synchronized audio.
+</div>
+
+</div>
+
+<div class="section-box">
 <h3>Slider Comparison</h3>
 
 <div class="slider-container" id="slider">
@@ -224,21 +265,26 @@ body {
 
 <div class="slider-bar" id="sliderBar"></div>
 </div>
+</div>
 
+<div class="section-box">
 <h3>Defect Awareness</h3>
 <ul>
-<li>Visual noise</li>
-<li>Audio noise</li>
-<li>Inconsistencies</li>
-<li>Illogical edits</li>
+<li>Visual noise and distortion</li>
+<li>Audio mismatch</li>
+<li>Object inconsistency</li>
+<li>Unrealistic edits</li>
 </ul>
-
-<h3>Reflection</h3>
-<p>This project shows my ability to apply structured QA workflows and deliver high quality outputs across media formats.</p>
-
-<p><strong>Portfolio Note:</strong> Strong focus on defect recognition and actionable feedback.</p>
-
 </div>
+
+<div class="section-box">
+<h3>Reflection</h3>
+<p>
+This project demonstrates structured evaluation across image and video tasks.
+Decisions were based on clear criteria and consistent review standards.
+</p>
+</div>
+
 </div>
 
 <script>
