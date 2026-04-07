@@ -1,190 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Hillary Kusumo Portfolio</title>
+<meta charset="UTF-8">
+<title>Hillary Kusumo Portfolio</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: white;
-      background: #0f172a;
-      overflow-x: hidden;
-    }
+<style>
+body { margin:0; font-family:Arial; background:#0f172a; color:white; }
+#particles-js { position:fixed; width:100%; height:100%; z-index:-1; }
 
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
+.content { padding:40px; }
+.container { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
 
-    .content { padding: 40px; }
-    .header { text-align: center; margin-bottom: 50px; }
-    .profile-pic { width: 120px; height: 120px; border-radius: 50%; border: 3px solid #3b82f6; margin-bottom: 15px; }
-    .name { font-size: 32px; font-weight: bold; letter-spacing: 2px; }
-    .info a { color: #3b82f6; text-decoration: none; margin: 0 10px; display: inline-flex; align-items: center; gap: 6px; }
-    .info a:hover { color: #60a5fa; }
+.card { background:#1e293b; padding:20px; border-radius:12px; cursor:pointer; }
+.card img { width:100%; border-radius:8px; }
 
-    .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.collapse-content { display:none; margin-top:15px; }
 
-    .card {
-      background: rgba(30, 41, 59, 0.9);
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      transition: 0.3s;
-      backdrop-filter: blur(6px);
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      position: relative;
-      overflow: hidden;
-    }
+.video-grid { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
 
-    .card:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 10px 20px rgba(0,0,0,0.7); }
+video { width:100%; border-radius:8px; }
 
-    .card img { width: 100%; border-radius: 8px; margin-bottom: 15px; transition: transform 0.2s; }
-    .card img:hover { transform: scale(1.05); }
+.sync-btn {
+  margin:10px 0;
+  padding:10px;
+  background:#3b82f6;
+  border:none;
+  color:white;
+  cursor:pointer;
+  border-radius:6px;
+  width:100%;
+}
 
-    h2 { margin-bottom: 10px; }
-    p { font-size: 14px; color: #cbd5f5; }
-    ul { text-align: left; font-size: 14px; margin-left: 20px; color: #cbd5f5; }
-    .btn { display: inline-block; margin-top: 15px; padding: 12px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 8px; }
-    .btn:hover { background: #2563eb; }
+/* Slider */
+.slider-container {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+}
 
-    .collapse-content { display: none; margin-top: 15px; text-align: left; }
+.slider-video {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+}
 
-    .annotation-images {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-      margin-top: 15px;
-      margin-bottom: 15px;
-    }
-    .annotation-images::-webkit-scrollbar { height: 8px; }
-    .annotation-images::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
-    .annotation-images::-webkit-scrollbar-track { background: #1e293b; }
-    .annotation-images img { width: 120px; border-radius: 6px; cursor: pointer; }
+.slider-video video {
+  width: 100%;
+}
 
-    .lightbox { display: none; position: fixed; z-index: 9999; padding-top: 60px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); }
-    .lightbox img { margin: auto; display: block; max-width: 90%; max-height: 80%; }
-    .close { position: absolute; top: 30px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
-    .close:hover { color: #bbb; }
+.slider-overlay {
+  position: absolute;
+  width: 50%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
 
-    @media (max-width: 500px) { .annotation-images img { width: 80px; } }
-
-  </style>
+.slider-bar {
+  position: absolute;
+  width: 4px;
+  background: #3b82f6;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  cursor: ew-resize;
+}
+</style>
 </head>
 
 <body>
 <div id="particles-js"></div>
 
 <div class="content">
-  <!-- HEADER -->
-  <div class="header">
-    <img src="Images/profile.jpg" class="profile-pic" alt="Profile Photo">
-    <div class="name">HILLARY CLARENCE KUSUMO</div>
-    <div class="info">
-      <a href="https://www.linkedin.com/in/hillary-kusumo-b66913178/?skipRedirect=true" target="_blank"><i class="fab fa-linkedin"></i> LINKEDIN</a>
-      <a href="mailto:clarohillary@gmail.com"><i class="fas fa-envelope"></i> CLAROHILLARY@GMAIL.COM</a>
-      <a href="mailto:Hillaryclaro@gmail.com"><i class="fas fa-envelope"></i> HILLARYCLARO@GMAIL.COM</a>
-    </div>
-  </div>
+<div class="container">
 
-  <!-- CARDS -->
-  <div class="container">
-    <!-- Resume -->
-    <div class="card">
-      <img src="Resume Thumbnail.png" alt="Resume Thumbnail">
-      <h2>Resume</h2>
-      <p>View my professional experience and skills.</p>
-      <a class="btn" href="https://drive.google.com/file/d/1gRUr3Y4En71HGnATofre68AUSJkKgrbN/view?usp=sharing" target="_blank">View Resume</a>
-    </div>
+<!-- Evaluation Card -->
+<div class="card" id="evaluationCard">
+<img src="Thumbnail.png">
+<h2>Video & Image Evaluation</h2>
 
-    <!-- Certificate -->
-    <div class="card">
-      <img src="Certificate Thumbnail.png" alt="Micro 1 Certificate Thumbnail">
-      <h2>Micro 1 Certificate</h2>
-      <p>Proof of my annotation and evaluation training.</p>
-      <a class="btn" href="https://drive.google.com/file/d/1jIfqd8ttvwceigDHtd4HyttNUr652OtC/view?usp=sharing" target="_blank">View Certificate</a>
-    </div>
+<div class="collapse-content" id="evaluationContent">
 
-    <!-- Annotation Project Card -->
-    <div class="card" id="annotationCard">
-      <img src="Images/0.png" alt="Rodeo Annotation Project Thumbnail">
-      <h2>Rodeo Annotation Project</h2>
-      <p>Click to view how I handled this CVAT keypoint project.</p>
-      
-      <div class="collapse-content" id="annotationContent">
-        <!-- Video -->
-        <video controls width="100%">
-          <source src="cvat_project.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+<button class="sync-btn" onclick="playSync()">Play Both Videos</button>
 
-        <!-- Annotation Images -->
-        <div class="annotation-images">
-          <img src="Images/0.png" alt="Annotation Image 0">
-          <img src="Images/1.png" alt="Annotation Image 1">
-          <img src="Images/2.png" alt="Annotation Image 2">
-          <img src="Images/3.png" alt="Annotation Image 3">
-          <img src="Images/4.png" alt="Annotation Image 4">
-          <img src="Images/5.png" alt="Annotation Image 5">
-          <img src="Images/6.png" alt="Annotation Image 6">
-          <img src="Images/7.png" alt="Annotation Image 7">
-          <img src="Images/8.png" alt="Annotation Image 8">
-          <img src="Images/9.png" alt="Annotation Image 9">
-        </div>
+<div class="video-grid">
+  <video id="vid1" controls>
+    <source src="video 1.mp4">
+  </video>
 
-        <!-- Guidelines -->
-        <ul>
-          <li><strong>Barrel Racing:</strong> Bounding boxes for horse, rider, barrels, and visible objects at 30fps.</li>
-          <li><strong>Bull/Bareback/Saddle Bronc Riding:</strong> Bounding boxes and keypoints for riders, animals, pickup riders, and non-bucking horses.</li>
-          <li><strong>Keypoints:</strong> COCO format for persons and animals.</li>
-          <li><strong>Edge Cases:</strong> Overlapping objects, occlusion, motion blur, small objects, riders fallen off.</li>
-          <li><strong>Consistency:</strong> Maintain same IDs across frames for objects and keypoints.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <video id="vid2" controls>
+    <source src="video 2.mp4">
+  </video>
 </div>
 
-<!-- LIGHTBOX -->
-<div id="lightbox" class="lightbox">
-  <span class="close">&times;</span>
-  <img id="lightbox-img" src="">
+<h3>Slider Comparison</h3>
+
+<div class="slider-container" id="slider">
+
+  <div class="slider-video">
+    <video id="baseVideo" muted loop>
+      <source src="video 1.mp4">
+    </video>
+  </div>
+
+  <div class="slider-overlay" id="overlay">
+    <video id="topVideo" muted loop>
+      <source src="video 2.mp4">
+    </video>
+  </div>
+
+  <div class="slider-bar" id="sliderBar"></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 </div>
 
 <script>
-  // Particles.js
-  particlesJS("particles-js", {particles:{number:{value:80},size:{value:3},move:{speed:1},line_linked:{enable:true}}});
+particlesJS("particles-js",{particles:{number:{value:80},size:{value:3},move:{speed:1},line_linked:{enable:true}}})
 
-  // Collapsible Annotation Card
-  const annotationCard = document.getElementById("annotationCard");
-  const annotationContent = document.getElementById("annotationContent");
-  annotationCard.addEventListener("click", () => {
-    annotationContent.style.display = annotationContent.style.display === "block" ? "none" : "block";
-  });
+const evaluationCard = document.getElementById("evaluationCard")
+const evaluationContent = document.getElementById("evaluationContent")
 
-  // Lightbox for annotation images
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
-  const images = document.querySelectorAll(".annotation-images img");
-  const close = document.querySelector(".close");
+evaluationCard.onclick = () => {
+  evaluationContent.style.display = evaluationContent.style.display === "block" ? "none" : "block"
+}
 
-  images.forEach(img => {
-    img.addEventListener("click", () => {
-      lightbox.style.display = "block";
-      lightboxImg.src = img.src;
-    });
-  });
-  close.addEventListener("click", () => lightbox.style.display = "none");
-  lightbox.addEventListener("click", (e) => { if(e.target===lightbox) lightbox.style.display="none"; });
+/* Sync Play */
+function playSync(){
+  const v1 = document.getElementById("vid1")
+  const v2 = document.getElementById("vid2")
+  v1.currentTime = 0
+  v2.currentTime = 0
+  v1.play()
+  v2.play()
+}
+
+/* Slider Logic */
+const slider = document.getElementById("slider")
+const overlay = document.getElementById("overlay")
+const bar = document.getElementById("sliderBar")
+
+let dragging = false
+
+bar.addEventListener("mousedown", () => dragging = true)
+window.addEventListener("mouseup", () => dragging = false)
+
+window.addEventListener("mousemove", (e) => {
+  if (!dragging) return
+  const rect = slider.getBoundingClientRect()
+  let x = e.clientX - rect.left
+  if (x < 0) x = 0
+  if (x > rect.width) x = rect.width
+
+  overlay.style.width = x + "px"
+  bar.style.left = x + "px"
+})
+
+/* autoplay slider videos */
+document.getElementById("baseVideo").play()
+document.getElementById("topVideo").play()
 </script>
 
 </body>
