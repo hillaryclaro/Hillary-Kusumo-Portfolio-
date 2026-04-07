@@ -87,7 +87,7 @@ body {
   color:#60a5fa;
 }
 
-/* videos */
+/* videos & images */
 .video-grid {
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -112,6 +112,8 @@ body {
 .annotation-flex .notes, .annotation-flex .images {
   flex:1;
   min-width:250px;
+  max-height:500px;
+  overflow:auto;
 }
 
 /* highlight */
@@ -210,12 +212,29 @@ body {
 <div class="annotation-flex">
   <!-- Notes -->
   <div class="notes section-box">
-    <h3>Notes</h3>
+    <h3>Rodeo Video Labeling Notes</h3>
+    <p>This guide covers Barrel Racing (bounding boxes only) and Bull/Bareback/Saddle Bronc Riding (bounding boxes and keypoints) in COCO JSON format. Follow these for high-quality, consistent annotations.</p>
+    
+    <h4>Barrel Racing</h4>
     <ul>
-      <li>Used bounding boxes for object detection.</li>
-      <li>Polygons were applied for irregular shapes.</li>
-      <li>Reviewed and corrected annotations to match instructions.</li>
-      <li>Ensured consistency across frames and objects.</li>
+      <li>Label at 30fps. Only annotate the actual event between start and finish line.</li>
+      <li>Objects: horse, rider, flag, chalk, barrel (all 3 barrels individually). Rider and horse are separate boxes.</li>
+      <li>Bounding boxes must be tight and axis-aligned. Partial occlusions are allowed; include visible parts.</li>
+      <li>Overlaps: rider overlapping horse is fine. Label each object separately.</li>
+    </ul>
+    
+    <h4>Bull / Bareback / Saddle Bronc Riding</h4>
+    <ul>
+      <li>Label at 30fps. Duration: chute gate opens till 8 seconds or rider falls.</li>
+      <li>Objects: bronc/bull, non-bucking horses, rider, pickup rider. Same ID across frames.</li>
+      <li>Bounding boxes: tight around visible extent. Rider separated from animal if falls.</li>
+      <li>Keypoints: use COCO format. Mark occluded points (visibility=1) if partially hidden.</li>
+      <li>Small objects: apply bounding box and mark “too small” for keypoints.</li>
+      <li>Person keypoints: head, shoulders, elbows, wrists, hips, knees, ankles.</li>
+      <li>Bull/horse keypoints: nose, ears, withers, mid-back, loin, tail base, shoulders, hips, elbows, knees, hooves.</li>
+      <li>Overlapping: assign keypoints to correct object; bounding boxes separate.</li>
+      <li>Motion blur: label normally if visible; if uncertain, mark occluded.</li>
+      <li>Fallen rider: label rider and animal separately with keypoints.</li>
     </ul>
   </div>
 
@@ -223,15 +242,20 @@ body {
   <div class="images section-box">
     <h3>Sample Annotated Images</h3>
     <div class="video-grid">
-      <img src="Images/0.png" alt="Annotated Image 1">
-      <img src="Images/1.png" alt="Annotated Image 2">
-      <img src="Images/2.png" alt="Annotated Image 3">
-      <img src="Images/3.png" alt="Annotated Image 4">
+      <img src="Images/0.png" alt="Annotated Image 0">
+      <img src="Images/1.png" alt="Annotated Image 1">
+      <img src="Images/2.png" alt="Annotated Image 2">
+      <img src="Images/3.png" alt="Annotated Image 3">
+      <img src="Images/4.png" alt="Annotated Image 4">
+      <img src="Images/5.png" alt="Annotated Image 5">
+      <img src="Images/6.png" alt="Annotated Image 6">
+      <img src="Images/7.png" alt="Annotated Image 7">
+      <img src="Images/8.png" alt="Annotated Image 8">
+      <img src="Images/9.png" alt="Annotated Image 9">
     </div>
   </div>
 </div>
 
-<!-- Video Section -->
 <div class="section-box">
 <video controls style="max-width:600px;">
 <source src="cvat_project.mp4">
@@ -241,7 +265,7 @@ body {
 </div>
 </div>
 
-<!-- EVALUATION OVERLAY -->
+<!-- EVALUATION OVERLAY (unchanged) -->
 <div class="overlay" id="evaluationOverlay">
 <button class="close-btn" onclick="closeOverlay('evaluationOverlay')">Close</button>
 
