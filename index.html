@@ -2,216 +2,392 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio</title>
+<title>Hillary Kusumo Portfolio</title>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
 <style>
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #1f1f1f;
-    color: #e0e0e0;
+  margin:0;
+  font-family:Arial;
+  background:#0f172a;
+  color:white;
 }
+
+#particles-js {
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-1;
+}
+
+.content { padding:30px; }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-h1, h2 {
-    color: #fff;
-}
-
-.card-container {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:20px;
+  max-width:900px;
+  margin:auto;
 }
 
 .card {
-    position: relative;
-    width: 300px;
-    background-color: #2a2a2a;
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.2s;
+  background:#1e293b;
+  padding:15px;
+  border-radius:10px;
+  cursor:pointer;
+  text-align:center;
+  transition:0.2s;
 }
 
-.card:hover {
-    transform: scale(1.03);
-}
+.card:hover { transform:scale(1.03); }
 
 .card img {
-    width: 100%;
-    display: block;
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius:8px;
 }
 
-.card .hover-text {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    font-weight: bold;
-    background: rgba(0,0,0,0.6);
-    padding: 5px 0;
-    opacity: 0;
-    transition: opacity 0.2s;
+/* overlay */
+.overlay {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#020617;
+  z-index:9999;
+  padding:30px;
+  overflow:auto;
 }
 
-.card:hover .hover-text {
-    opacity: 1;
+.close-btn {
+  background:#ef4444;
+  padding:10px;
+  border:none;
+  color:white;
+  cursor:pointer;
+  border-radius:6px;
+  margin-bottom:20px;
 }
 
-.evaluation-tabs {
-    margin-top: 40px;
+/* sections */
+.section-box {
+  background:#1e293b;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:20px;
+  max-width:900px;
 }
 
-.tab-buttons {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+.section-box h3 {
+  margin-top:0;
+  color:#60a5fa;
 }
 
-.tab-buttons button {
-    background-color: #2a2a2a;
-    border: none;
-    padding: 10px 20px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
+/* videos & images */
+.video-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  max-width:600px;
 }
 
-.tab-buttons button.active {
-    background-color: #444;
+.video-grid video, .video-grid img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:8px;
 }
 
-.tab-content {
-    display: none;
-    background-color: #2a2a2a;
-    padding: 20px;
-    border-radius: 10px;
-    color: #e0e0e0;
+/* annotation side-by-side layout */
+.annotation-flex {
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
 }
 
-.tab-content.active {
-    display: block;
+.annotation-flex .notes, .annotation-flex .images {
+  flex:1;
+  min-width:250px;
+  max-height:500px;
+  overflow:auto;
 }
 
-.video-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* highlight */
+.highlight {
+  background:#3b82f6;
+  padding:15px;
+  border-radius:10px;
+  margin-top:15px;
 }
 
-.video-container video {
-    width: 100%;
-    max-width: 480px;
-    border-radius: 8px;
+/* slider */
+.slider-container {
+  position:relative;
+  margin-top:20px;
+  max-width:600px;
 }
 
-.notes {
-    margin-top: 10px;
-    font-size: 16px;
+.slider-container video {
+  height:200px;
+  object-fit:cover;
 }
 
+.slider-overlay {
+  position:absolute;
+  top:0;
+  left:0;
+  width:50%;
+  overflow:hidden;
+}
+
+.slider-bar {
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:4px;
+  background:#3b82f6;
+  left:50%;
+  cursor:pointer;
+}
+
+/* button */
+.btn {
+  margin:10px 0;
+  padding:10px;
+  background:#3b82f6;
+  color:white;
+  border:none;
+  cursor:pointer;
+  border-radius:6px;
+}
 </style>
 </head>
+
 <body>
+<div id="particles-js"></div>
+
+<div class="content">
 <div class="container">
-    <h1>Portfolio</h1>
 
-    <div class="card-container">
-        <!-- Resume Card -->
-        <div class="card" onclick="window.open('Resume.pdf','_blank')">
-            <img src="Resume Thumbnail.png" alt="Resume">
-            <div class="hover-text">Click to open</div>
-        </div>
+<!-- Resume -->
+<div class="card">
+<img src="Resume Thumbnail.png">
+<h3>Resume</h3>
+<a href="https://drive.google.com/file/d/1gRUr3Y4En71HGnATofre68AUSJkKgrbN/view" target="_blank">Open</a>
+</div>
 
-        <!-- Certificate Card -->
-        <div class="card" onclick="window.open('Certificate.pdf','_blank')">
-            <img src="Certificate Thumbnail.png" alt="Certificate">
-            <div class="hover-text">Click to open</div>
-        </div>
+<!-- Certificate -->
+<div class="card">
+<img src="Certificate Thumbnail.png">
+<h3>Certificate</h3>
+<a href="https://drive.google.com/file/d/1jIfqd8ttvwceigDHtd4HyttNUr652OtC/view" target="_blank">Open</a>
+</div>
+
+<!-- Annotation -->
+<div class="card" onclick="openOverlay('annotationOverlay')">
+<img src="Images/0.png">
+<h3>Annotation Project</h3>
+</div>
+
+<!-- Evaluation -->
+<div class="card" onclick="openOverlay('evaluationOverlay')">
+<img src="Thumbnail.png">
+<h3>Video & Image Evaluation</h3>
+</div>
+
+</div>
+</div>
+
+<!-- ANNOTATION OVERLAY -->
+<div class="overlay" id="annotationOverlay">
+<button class="close-btn" onclick="closeOverlay('annotationOverlay')">Close</button>
+
+<div class="section-box">
+<h2>Annotation Project</h2>
+
+<div class="annotation-flex">
+  <!-- Notes -->
+  <div class="notes section-box">
+    <h3>Rodeo Video Labeling Notes</h3>
+    <p>This guide covers Barrel Racing (bounding boxes only) and Bull/Bareback/Saddle Bronc Riding (bounding boxes and keypoints) in COCO JSON format. Follow these for high-quality, consistent annotations.</p>
+   
+    <h4>Barrel Racing</h4>
+    <ul>
+      <li>Label at 30fps. Only annotate the actual event between start and finish line.</li>
+      <li>Objects: horse, rider, flag, chalk, barrel (all 3 barrels individually). Rider and horse are separate boxes.</li>
+      <li>Bounding boxes must be tight and axis-aligned. Partial occlusions are allowed; include visible parts.</li>
+      <li>Overlaps: rider overlapping horse is fine. Label each object separately.</li>
+    </ul>
+   
+    <h4>Bull / Bareback / Saddle Bronc Riding</h4>
+    <ul>
+      <li>Label at 30fps. Duration: chute gate opens till 8 seconds or rider falls.</li>
+      <li>Objects: bronc/bull, non-bucking horses, rider, pickup rider. Same ID across frames.</li>
+      <li>Bounding boxes: tight around visible extent. Rider separated from animal if falls.</li>
+      <li>Keypoints: use COCO format. Mark occluded points (visibility=1) if partially hidden.</li>
+      <li>Small objects: apply bounding box and mark “too small” for keypoints.</li>
+      <li>Person keypoints: head, shoulders, elbows, wrists, hips, knees, ankles.</li>
+      <li>Bull/horse keypoints: nose, ears, withers, mid-back, loin, tail base, shoulders, hips, elbows, knees, hooves.</li>
+      <li>Overlapping: assign keypoints to correct object; bounding boxes separate.</li>
+      <li>Motion blur: label normally if visible; if uncertain, mark occluded.</li>
+      <li>Fallen rider: label rider and animal separately with keypoints.</li>
+    </ul>
+  </div>
+
+  <!-- Images -->
+  <div class="images section-box">
+    <h3>Sample Annotated Images</h3>
+    <div class="video-grid">
+      <img src="Images/0.png" alt="Annotated Image 0">
+      <img src="Images/1.png" alt="Annotated Image 1">
+      <img src="Images/2.png" alt="Annotated Image 2">
+      <img src="Images/3.png" alt="Annotated Image 3">
+      <img src="Images/4.png" alt="Annotated Image 4">
+      <img src="Images/5.png" alt="Annotated Image 5">
+      <img src="Images/6.png" alt="Annotated Image 6">
+      <img src="Images/7.png" alt="Annotated Image 7">
+      <img src="Images/8.png" alt="Annotated Image 8">
+      <img src="Images/9.png" alt="Annotated Image 9">
     </div>
+  </div>
+</div>
 
-    <div class="evaluation-tabs">
-        <h2>Image & Video Evaluation Project</h2>
+<div class="section-box">
+<video controls style="max-width:600px;">
+<source src="cvat_project.mp4">
+</video>
+</div>
 
-        <div class="tab-buttons">
-            <button class="active" onclick="openTab(event, 'videos')">Videos</button>
-            <button onclick="openTab(event, 'analysis')">Analysis</button>
-            <button onclick="openTab(event, 'scoring')">Scoring</button>
-            <button onclick="openTab(event, 'guidelines')">Guidelines</button>
-            <button onclick="openTab(event, 'result')">Result</button>
-        </div>
+</div>
+</div>
 
-        <div id="videos" class="tab-content active">
-            <div class="video-container">
-                <video controls>
-                    <source src="video1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="notes">
-                    Video 1 shows better realism. Audio and motion are synchronized, making the scene more natural.
-                </div>
+<!-- EVALUATION OVERLAY (unchanged) -->
+<div class="overlay" id="evaluationOverlay">
+<button class="close-btn" onclick="closeOverlay('evaluationOverlay')">Close</button>
 
-                <video controls>
-                    <source src="video2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="notes">
-                    Video 2 has clear visuals but audio and motion are slightly off compared to video 1.
-                </div>
-            </div>
-        </div>
+<div class="section-box">
+<h2>Image & Video Evaluation Project</h2>
+<p>
+In this project I applied structured QA workflows to evaluate both images and videos.
+Focus remained on instruction accuracy, visual quality, and usability.
+</p>
+</div>
 
-        <div id="analysis" class="tab-content">
-            <p style="font-size:18px">
-                The analysis tab provides a detailed breakdown of each evaluation metric. Each video was assessed for clarity, motion synchronization, audio quality, and realism. The scoring is based on a rubric that ensures consistency across all evaluations.
-            </p>
-            <p style="font-size:18px">
-                Observations from the analysis highlight strengths and weaknesses. Video 1 demonstrates superior motion realism, whereas Video 2 shows minor inconsistencies. These insights guide improvements in future video production.
-            </p>
-        </div>
+<div class="section-box">
+<h3>Image Evaluation</h3>
+<ul>
+<li>Checked defects like banding, distortion, and unrealistic edits</li>
+<li>Compared outputs against prompts</li>
+<li>Selected best image based on realism and clarity</li>
+</ul>
+</div>
 
-        <div id="scoring" class="tab-content">
-            <p style="font-size:18px">
-                Each video is assigned a score based on predefined criteria. Scores reflect motion, audio synchronization, visual clarity, and overall quality. Detailed scoring allows quick identification of areas needing improvement.
-            </p>
-        </div>
+<div class="section-box">
+<h3>Video Evaluation</h3>
 
-        <div id="guidelines" class="tab-content">
-            <p style="font-size:18px">
-                Annotation and evaluation follow strict guidelines. Videos are reviewed frame by frame to ensure accuracy. Notes are logged for motion, audio, and object detection accuracy.
-            </p>
-        </div>
+<button class="btn" onclick="playSync()">Play Both Videos</button>
 
-        <div id="result" class="tab-content">
-            <p style="font-size:18px">
-                Results summarize the evaluation and provide actionable recommendations. Video 1 is identified as the preferred reference due to its higher quality and natural motion.
-            </p>
-        </div>
-    </div>
+<div class="video-grid">
+<video id="vid1" controls>
+<source src="video 1.mp4">
+</video>
+
+<video id="vid2" controls>
+<source src="video 2.mp4">
+</video>
+</div>
+
+<p>
+Evaluation focused on motion quality, audio clarity, and consistency.
+Video 1 showed smoother transitions across frames.
+Movement remained stable with no abrupt changes.
+Audio stayed aligned with visuals and remained clear throughout.
+
+Video 2 introduced slight inconsistencies in motion and less stable audio sync.
+These differences affected realism and overall viewing quality.
+</p>
+
+<div class="highlight">
+Final Decision: Video 1 selected.  
+Reason: smoother motion, stable transitions, and clear synchronized audio.
+</div>
+
+</div>
+
+<div class="section-box">
+<h3>Slider Comparison</h3>
+
+<div class="slider-container" id="slider">
+<video src="video 1.mp4" autoplay muted loop></video>
+
+<div class="slider-overlay" id="overlay">
+<video src="video 2.mp4" autoplay muted loop></video>
+</div>
+
+<div class="slider-bar" id="sliderBar"></div>
+</div>
+</div>
+
+<div class="section-box">
+<h3>Defect Awareness</h3>
+<ul>
+<li>Visual noise and distortion</li>
+<li>Audio mismatch</li>
+<li>Object inconsistency</li>
+<li>Unrealistic edits</li>
+</ul>
+</div>
+
+<div class="section-box">
+<h3>Reflection</h3>
+<p>
+This project demonstrates structured evaluation across image and video tasks.
+Decisions were based on clear criteria and consistent review standards.
+</p>
+</div>
+
 </div>
 
 <script>
-function openTab(evt, tabName) {
-    var i, tabcontent, tabbuttons;
-    tabcontent = document.getElementsByClassName("tab-content");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].classList.remove("active");
-    }
-    tabbuttons = document.getElementsByClassName("tab-buttons")[0].getElementsByTagName("button");
-    for (i = 0; i < tabbuttons.length; i++) {
-        tabbuttons[i].classList.remove("active");
-    }
-    document.getElementById(tabName).classList.add("active");
-    evt.currentTarget.classList.add("active");
+particlesJS("particles-js",{particles:{number:{value:80},size:{value:3},move:{speed:1},line_linked:{enable:true}}})
+
+function openOverlay(id){ document.getElementById(id).style.display="block" }
+function closeOverlay(id){ document.getElementById(id).style.display="none" }
+
+function playSync(){
+  const v1=document.getElementById("vid1")
+  const v2=document.getElementById("vid2")
+  v1.currentTime=0
+  v2.currentTime=0
+  v1.play()
+  v2.play()
+}
+
+const slider=document.getElementById("slider")
+const overlay=document.getElementById("overlay")
+const bar=document.getElementById("sliderBar")
+
+let dragging=false
+
+if(bar){
+bar.addEventListener("mousedown",()=>dragging=true)
+window.addEventListener("mouseup",()=>dragging=false)
+
+window.addEventListener("mousemove",(e)=>{
+  if(!dragging) return
+  const rect=slider.getBoundingClientRect()
+  let x=e.clientX-rect.left
+  if(x<0) x=0
+  if(x>rect.width) x=rect.width
+  overlay.style.width=x+"px"
+  bar.style.left=x+"px"
+})
 }
 </script>
+
 </body>
 </html>
