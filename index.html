@@ -5,291 +5,236 @@
 <title>Hillary Kusumo Portfolio</title>
 
 <style>
-body {
+body{
   margin:0;
   font-family:Arial;
+  background:#020617;
   color:white;
-  background:black;
+  scroll-behavior:smooth;
 }
 
 /* VIDEO BACKGROUND */
-#bg-video {
+#bg-video{
   position:fixed;
   top:0;
   left:0;
   width:100%;
   height:100%;
-  object-fit:contain;
+  object-fit:cover;
   z-index:-2;
 }
 
-/* DARK OVERLAY */
-body::after {
+body::after{
   content:"";
   position:fixed;
   top:0;
   left:0;
   width:100%;
   height:100%;
-  background:rgba(2,6,23,0.5);
+  background:linear-gradient(to bottom, rgba(2,6,23,0.9), rgba(2,6,23,0.95));
   z-index:-1;
 }
 
-.content { padding:30px; }
-
-.container {
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:20px;
-  max-width:900px;
-  margin:auto;
-}
-
-.card {
-  background:#1e293b;
-  padding:15px;
-  border-radius:10px;
-  cursor:pointer;
-  text-align:center;
-  transition:0.2s;
-}
-
-.card:hover { transform:scale(1.03); }
-
-.card img {
-  width:100%;
-  height:140px;
-  object-fit:cover;
-  border-radius:8px;
-}
-
-.overlay {
-  display:none;
+/* NAV */
+.nav{
   position:fixed;
   top:0;
-  left:0;
   width:100%;
-  height:100%;
-  background:#020617;
-  z-index:9999;
-  padding:30px;
-  overflow:auto;
-}
-
-.close-btn {
-  background:#ef4444;
-  padding:10px;
-  border:none;
-  color:white;
-  cursor:pointer;
-  border-radius:6px;
-  margin-bottom:20px;
-}
-
-.section-box {
-  background:#1e293b;
-  padding:20px;
-  border-radius:10px;
-  margin-bottom:20px;
-  max-width:900px;
-}
-
-.section-box h3 {
-  margin-top:0;
-  color:#60a5fa;
-}
-
-.video-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  max-width:600px;
-}
-
-.video-grid video, .video-grid img {
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  border-radius:8px;
-}
-
-.annotation-flex {
   display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-}
-
-.annotation-flex .notes, .annotation-flex .images {
-  flex:1;
-  min-width:250px;
-  max-height:500px;
-  overflow:auto;
-}
-
-.highlight {
-  background:#3b82f6;
+  justify-content:center;
+  gap:30px;
   padding:15px;
-  border-radius:10px;
+  background:rgba(2,6,23,0.7);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+.nav a{
+  color:#cbd5f5;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.nav a:hover{
+  color:#ef4444;
+}
+
+/* SECTION */
+.section{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:120px 10%;
+  min-height:100vh;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
+
+.section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.section:nth-child(even){
+  flex-direction:row-reverse;
+}
+
+.text{
+  max-width:520px;
+}
+
+.number{
+  font-size:60px;
+  color:#ef4444;
+  opacity:0.2;
+  margin-bottom:10px;
+}
+
+.text h2{
+  color:#ef4444;
+  margin:0 0 10px 0;
+}
+
+.text p{
+  line-height:1.6;
+  color:#cbd5f5;
+}
+
+.btn{
+  display:inline-block;
   margin-top:15px;
-}
-
-.slider-container {
-  position:relative;
-  margin-top:20px;
-  max-width:600px;
-}
-
-.slider-container video {
-  height:200px;
-  object-fit:cover;
-}
-
-/* FIXED NAME */
-.slider-overlay {
-  position:absolute;
-  top:0;
-  left:0;
-  width:50%;
-  overflow:hidden;
-}
-
-.slider-bar {
-  position:absolute;
-  top:0;
-  bottom:0;
-  width:4px;
-  background:#3b82f6;
-  left:50%;
-  cursor:pointer;
-}
-
-.btn {
-  margin:10px 0;
-  padding:10px;
-  background:#3b82f6;
+  padding:10px 20px;
+  background:#1e293b;
   color:white;
-  border:none;
-  cursor:pointer;
+  text-decoration:none;
   border-radius:6px;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#ef4444;
+}
+
+/* MEDIA */
+.media img, .media video{
+  width:420px;
+  border-radius:12px;
+  transition:0.3s;
+}
+
+.media img:hover, .media video:hover{
+  transform:scale(1.05);
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .section{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .media img, .media video{
+    width:100%;
+    margin-top:20px;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- VIDEO BACKGROUND -->
 <video autoplay muted loop playsinline id="bg-video">
   <source src="Linkedin.mp4" type="video/mp4">
 </video>
 
-<div class="content">
-<div class="container">
-
-<div class="card">
-<img src="Resume Thumbnail.png">
-<h3>Resume</h3>
-<a href="https://drive.google.com/file/d/1gRUr3Y4En71HGnATofre68AUSJkKgrbN/view" target="_blank">Open</a>
+<!-- NAV -->
+<div class="nav">
+  <a href="#resume">Resume</a>
+  <a href="#certificate">Certificate</a>
+  <a href="#annotation">Annotation</a>
+  <a href="#evaluation">Evaluation</a>
 </div>
 
-<div class="card">
-<img src="Certificate Thumbnail.png">
-<h3>Certificate</h3>
-<a href="https://drive.google.com/file/d/1jIfqd8ttvwceigDHtd4HyttNUr652OtC/view" target="_blank">Open</a>
+<!-- RESUME -->
+<div class="section" id="resume">
+  <div class="text">
+    <div class="number">01</div>
+    <h2>Resume</h2>
+    <p>
+      Full experience across data annotation, QA workflows, and large scale dataset handling. Focus on accuracy and consistency across image and video tasks.
+    </p>
+    <a class="btn" href="https://drive.google.com/file/d/1gRUr3Y4En71HGnATofre68AUSJkKgrbN/view" target="_blank">View Resume</a>
+  </div>
+
+  <div class="media">
+    <img src="Resume Thumbnail.png">
+  </div>
 </div>
 
-<div class="card" onclick="openOverlay('annotationOverlay')">
-<img src="Images/0.png">
-<h3>Annotation Project</h3>
+<!-- CERTIFICATE -->
+<div class="section" id="certificate">
+  <div class="text">
+    <div class="number">02</div>
+    <h2>Certificate</h2>
+    <p>
+      Verified training and certification aligned with annotation standards, quality review systems, and structured evaluation workflows.
+    </p>
+    <a class="btn" href="https://drive.google.com/file/d/1jIfqd8ttvwceigDHtd4HyttNUr652OtC/view" target="_blank">View Certificate</a>
+  </div>
+
+  <div class="media">
+    <img src="Certificate Thumbnail.png">
+  </div>
 </div>
 
-<div class="card" onclick="openOverlay('evaluationOverlay')">
-<img src="Thumbnail.png">
-<h3>Video & Image Evaluation</h3>
-</div>
+<!-- ANNOTATION -->
+<div class="section" id="annotation">
+  <div class="text">
+    <div class="number">03</div>
+    <h2>Annotation Project</h2>
+    <p>
+      Bounding boxes and keypoints applied to rodeo datasets. Maintained consistent object tracking across frames. Managed occlusion, motion blur, and edge cases using COCO format standards.
+    </p>
+  </div>
 
-</div>
+  <div class="media">
+    <video controls>
+      <source src="cvat_project.mp4">
+    </video>
+  </div>
 </div>
 
 <!-- EVALUATION -->
-<div class="overlay" id="evaluationOverlay">
-<button class="close-btn" onclick="closeOverlay('evaluationOverlay')">Close</button>
+<div class="section" id="evaluation">
+  <div class="text">
+    <div class="number">04</div>
+    <h2>Video Evaluation</h2>
+    <p>
+      Compared outputs based on motion stability, realism, and audio sync. Video 1 selected due to consistent transitions and aligned audio. Evaluation followed structured QA guidelines and scoring rules.
+    </p>
+  </div>
 
-<div class="section-box">
-<h2>Image & Video Evaluation Project</h2>
-<p>Full evaluation content now works.</p>
-</div>
-
-<div class="section-box">
-<h3>Video Evaluation</h3>
-
-<button class="btn" onclick="playSync()">Play Both Videos</button>
-
-<div class="video-grid">
-<video id="vid1" controls>
-<source src="video 1.mp4">
-</video>
-
-<video id="vid2" controls>
-<source src="video 2.mp4">
-</video>
-</div>
-
-<div class="highlight">
-Final Decision: Video 1 selected
-</div>
-
-</div>
-
-<div class="section-box">
-<h3>Slider Comparison</h3>
-
-<div class="slider-container" id="slider">
-<video src="video 1.mp4" autoplay muted loop></video>
-
-<!-- FIXED ID -->
-<div class="slider-overlay" id="sliderOverlay">
-<video src="video 2.mp4" autoplay muted loop></video>
-</div>
-
-<div class="slider-bar" id="sliderBar"></div>
-</div>
-</div>
-
+  <div class="media">
+    <video controls>
+      <source src="video 1.mp4">
+    </video>
+  </div>
 </div>
 
 <script>
-function openOverlay(id){ document.getElementById(id).style.display="block" }
-function closeOverlay(id){ document.getElementById(id).style.display="none" }
+const sections = document.querySelectorAll(".section")
 
-function playSync(){
-  const v1=document.getElementById("vid1")
-  const v2=document.getElementById("vid2")
-  v1.currentTime=0
-  v2.currentTime=0
-  v1.play()
-  v2.play()
-}
-
-/* FIXED JS */
-const slider=document.getElementById("slider")
-const overlay=document.getElementById("sliderOverlay")
-const bar=document.getElementById("sliderBar")
-
-let dragging=false
-
-if(bar){
-bar.addEventListener("mousedown",()=>dragging=true)
-window.addEventListener("mouseup",()=>dragging=false)
-
-window.addEventListener("mousemove",(e)=>{
-  if(!dragging) return
-  const rect=slider.getBoundingClientRect()
-  let x=e.clientX-rect.left
-  if(x<0) x=0
-  if(x>rect.width) x=rect.width
-  overlay.style.width=x+"px"
-  bar.style.left=x+"px"
+window.addEventListener("scroll", ()=>{
+  sections.forEach(sec=>{
+    const top = sec.getBoundingClientRect().top
+    if(top < window.innerHeight - 100){
+      sec.classList.add("show")
+    }
+  })
 })
-}
 </script>
 
 </body>
