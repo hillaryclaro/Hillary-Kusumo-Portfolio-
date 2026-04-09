@@ -4,20 +4,33 @@
 <meta charset="UTF-8">
 <title>Hillary Kusumo Portfolio</title>
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-
 <style>
 body {
   margin:0;
   font-family:Arial;
-  background:#0f172a;
   color:white;
 }
 
-#particles-js {
+/* VIDEO BACKGROUND */
+#bg-video {
   position:fixed;
+  top:0;
+  left:0;
   width:100%;
   height:100%;
+  object-fit:cover;
+  z-index:-1;
+}
+
+/* DARK OVERLAY FOR READABILITY */
+body::after {
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(2,6,23,0.6);
   z-index:-1;
 }
 
@@ -102,7 +115,7 @@ body {
   border-radius:8px;
 }
 
-/* annotation side-by-side layout */
+/* annotation layout */
 .annotation-flex {
   display:flex;
   gap:20px;
@@ -168,32 +181,32 @@ body {
 </head>
 
 <body>
-<div id="particles-js"></div>
+
+<!-- VIDEO BACKGROUND -->
+<video autoplay muted loop playsinline id="bg-video">
+  <source src="Linkedin.mp4" type="video/mp4">
+</video>
 
 <div class="content">
 <div class="container">
 
-<!-- Resume -->
 <div class="card">
 <img src="Resume Thumbnail.png">
 <h3>Resume</h3>
 <a href="https://drive.google.com/file/d/1gRUr3Y4En71HGnATofre68AUSJkKgrbN/view" target="_blank">Open</a>
 </div>
 
-<!-- Certificate -->
 <div class="card">
 <img src="Certificate Thumbnail.png">
 <h3>Certificate</h3>
 <a href="https://drive.google.com/file/d/1jIfqd8ttvwceigDHtd4HyttNUr652OtC/view" target="_blank">Open</a>
 </div>
 
-<!-- Annotation -->
 <div class="card" onclick="openOverlay('annotationOverlay')">
 <img src="Images/0.png">
 <h3>Annotation Project</h3>
 </div>
 
-<!-- Evaluation -->
 <div class="card" onclick="openOverlay('evaluationOverlay')">
 <img src="Thumbnail.png">
 <h3>Video & Image Evaluation</h3>
@@ -202,94 +215,25 @@ body {
 </div>
 </div>
 
-<!-- ANNOTATION OVERLAY -->
+<!-- ANNOTATION -->
 <div class="overlay" id="annotationOverlay">
 <button class="close-btn" onclick="closeOverlay('annotationOverlay')">Close</button>
 
 <div class="section-box">
 <h2>Annotation Project</h2>
-
-<div class="annotation-flex">
-  <!-- Notes -->
-  <div class="notes section-box">
-    <h3>Rodeo Video Labeling Notes</h3>
-    <p>This guide covers Barrel Racing (bounding boxes only) and Bull/Bareback/Saddle Bronc Riding (bounding boxes and keypoints) in COCO JSON format. Follow these for high-quality, consistent annotations.</p>
-   
-    <h4>Barrel Racing</h4>
-    <ul>
-      <li>Label at 30fps. Only annotate the actual event between start and finish line.</li>
-      <li>Objects: horse, rider, flag, chalk, barrel (all 3 barrels individually). Rider and horse are separate boxes.</li>
-      <li>Bounding boxes must be tight and axis-aligned. Partial occlusions are allowed; include visible parts.</li>
-      <li>Overlaps: rider overlapping horse is fine. Label each object separately.</li>
-    </ul>
-   
-    <h4>Bull / Bareback / Saddle Bronc Riding</h4>
-    <ul>
-      <li>Label at 30fps. Duration: chute gate opens till 8 seconds or rider falls.</li>
-      <li>Objects: bronc/bull, non-bucking horses, rider, pickup rider. Same ID across frames.</li>
-      <li>Bounding boxes: tight around visible extent. Rider separated from animal if falls.</li>
-      <li>Keypoints: use COCO format. Mark occluded points (visibility=1) if partially hidden.</li>
-      <li>Small objects: apply bounding box and mark “too small” for keypoints.</li>
-      <li>Person keypoints: head, shoulders, elbows, wrists, hips, knees, ankles.</li>
-      <li>Bull/horse keypoints: nose, ears, withers, mid-back, loin, tail base, shoulders, hips, elbows, knees, hooves.</li>
-      <li>Overlapping: assign keypoints to correct object; bounding boxes separate.</li>
-      <li>Motion blur: label normally if visible; if uncertain, mark occluded.</li>
-      <li>Fallen rider: label rider and animal separately with keypoints.</li>
-    </ul>
-  </div>
-
-  <!-- Images -->
-  <div class="images section-box">
-    <h3>Sample Annotated Images</h3>
-    <div class="video-grid">
-      <img src="Images/0.png" alt="Annotated Image 0">
-      <img src="Images/1.png" alt="Annotated Image 1">
-      <img src="Images/2.png" alt="Annotated Image 2">
-      <img src="Images/3.png" alt="Annotated Image 3">
-      <img src="Images/4.png" alt="Annotated Image 4">
-      <img src="Images/5.png" alt="Annotated Image 5">
-      <img src="Images/6.png" alt="Annotated Image 6">
-      <img src="Images/7.png" alt="Annotated Image 7">
-      <img src="Images/8.png" alt="Annotated Image 8">
-      <img src="Images/9.png" alt="Annotated Image 9">
-    </div>
-  </div>
-</div>
-
-<div class="section-box">
-<video controls style="max-width:600px;">
-<source src="cvat_project.mp4">
-</video>
+<p>Structured labeling using bounding boxes and keypoints. Focus on accuracy, consistency, and edge cases.</p>
 </div>
 
 </div>
-</div>
 
-<!-- EVALUATION OVERLAY (unchanged) -->
+<!-- EVALUATION -->
 <div class="overlay" id="evaluationOverlay">
 <button class="close-btn" onclick="closeOverlay('evaluationOverlay')">Close</button>
 
 <div class="section-box">
-<h2>Image & Video Evaluation Project</h2>
-<p>
-In this project I applied structured QA workflows to evaluate both images and videos.
-Focus remained on instruction accuracy, visual quality, and usability.
-</p>
-</div>
+<h2>Evaluation Project</h2>
 
-<div class="section-box">
-<h3>Image Evaluation</h3>
-<ul>
-<li>Checked defects like banding, distortion, and unrealistic edits</li>
-<li>Compared outputs against prompts</li>
-<li>Selected best image based on realism and clarity</li>
-</ul>
-</div>
-
-<div class="section-box">
-<h3>Video Evaluation</h3>
-
-<button class="btn" onclick="playSync()">Play Both Videos</button>
+<button class="btn" onclick="playSync()">Play Videos</button>
 
 <div class="video-grid">
 <video id="vid1" controls>
@@ -301,91 +245,32 @@ Focus remained on instruction accuracy, visual quality, and usability.
 </video>
 </div>
 
-<p>
-Evaluation focused on motion quality, audio clarity, and consistency.
-Video 1 showed smoother transitions across frames.
-Movement remained stable with no abrupt changes.
-Audio stayed aligned with visuals and remained clear throughout.
-
-Video 2 introduced slight inconsistencies in motion and less stable audio sync.
-These differences affected realism and overall viewing quality.
-</p>
-
 <div class="highlight">
-Final Decision: Video 1 selected.  
-Reason: smoother motion, stable transitions, and clear synchronized audio.
+Final Decision: Video 1 selected
 </div>
 
-</div>
-
-<div class="section-box">
-<h3>Slider Comparison</h3>
-
-<div class="slider-container" id="slider">
-<video src="video 1.mp4" autoplay muted loop></video>
-
-<div class="slider-overlay" id="overlay">
-<video src="video 2.mp4" autoplay muted loop></video>
-</div>
-
-<div class="slider-bar" id="sliderBar"></div>
-</div>
-</div>
-
-<div class="section-box">
-<h3>Defect Awareness</h3>
-<ul>
-<li>Visual noise and distortion</li>
-<li>Audio mismatch</li>
-<li>Object inconsistency</li>
-<li>Unrealistic edits</li>
-</ul>
-</div>
-
-<div class="section-box">
-<h3>Reflection</h3>
-<p>
-This project demonstrates structured evaluation across image and video tasks.
-Decisions were based on clear criteria and consistent review standards.
-</p>
 </div>
 
 </div>
 
 <script>
-particlesJS("particles-js",{particles:{number:{value:80},size:{value:3},move:{speed:1},line_linked:{enable:true}}})
+function openOverlay(id){
+  document.getElementById(id).style.display="block"
+}
 
-function openOverlay(id){ document.getElementById(id).style.display="block" }
-function closeOverlay(id){ document.getElementById(id).style.display="none" }
+function closeOverlay(id){
+  document.getElementById(id).style.display="none"
+}
 
 function playSync(){
   const v1=document.getElementById("vid1")
   const v2=document.getElementById("vid2")
+
   v1.currentTime=0
   v2.currentTime=0
+
   v1.play()
   v2.play()
-}
-
-const slider=document.getElementById("slider")
-const overlay=document.getElementById("overlay")
-const bar=document.getElementById("sliderBar")
-
-let dragging=false
-
-if(bar){
-bar.addEventListener("mousedown",()=>dragging=true)
-window.addEventListener("mouseup",()=>dragging=false)
-
-window.addEventListener("mousemove",(e)=>{
-  if(!dragging) return
-  const rect=slider.getBoundingClientRect()
-  let x=e.clientX-rect.left
-  if(x<0) x=0
-  if(x>rect.width) x=rect.width
-  overlay.style.width=x+"px"
-  bar.style.left=x+"px"
-})
 }
 </script>
 
