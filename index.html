@@ -111,10 +111,42 @@ p, li{color:#cbd5f5; line-height:1.6;}
   color:white;
   text-decoration:none;
   border-radius:6px;
+  cursor:pointer;
 }
 
 .button-link:hover{
   background:#c70000;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  z-index:2000;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.modal iframe{
+  width:90%;
+  height:90%;
+  border:none;
+  border-radius:10px;
+}
+
+.modal .close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:30px;
+  color:white;
+  cursor:pointer;
 }
 
 @media(max-width:900px){
@@ -253,16 +285,34 @@ Final Decision: Video 1 selected due to better motion quality and synchronizatio
 <div class="number">04</div>
 <h2>Resume</h2>
 <p>Click the button below to open my full resume.</p>
-<a class="button-link" href="Resume.pdf" target="_blank">Open Resume</a>
+<span class="button-link" onclick="openModal('https://drive.google.com/file/d/1gRUr3Y4En71HGnATofre68AUSJkKgrbN/preview')">Open Resume</span>
 </div>
 
 <!-- CERTIFICATE -->
 <div class="section" id="certificate">
 <div class="number">05</div>
 <h2>Certificate</h2>
-<p>Click the button below to view my certificate on Rive.</p>
-<a class="button-link" href="https://rive.app/some-certificate-link" target="_blank">Open Certificate</a>
+<p>Click the button below to view my certificate.</p>
+<span class="button-link" onclick="openModal('https://drive.google.com/file/d/1jIfqd8ttvwceigDHtd4HyttNUr652OtC/preview')">Open Certificate</span>
 </div>
+
+<!-- MODAL -->
+<div id="pdfModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <iframe id="modalFrame" src=""></iframe>
+</div>
+
+<script>
+function openModal(url){
+  document.getElementById('modalFrame').src = url;
+  document.getElementById('pdfModal').style.display = 'flex';
+}
+
+function closeModal(){
+  document.getElementById('pdfModal').style.display = 'none';
+  document.getElementById('modalFrame').src = '';
+}
+</script>
 
 </body>
 </html>
