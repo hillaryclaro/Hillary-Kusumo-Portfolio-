@@ -27,7 +27,6 @@ body{
 
 /* SEMI-TRANSPARENT OVERLAY */
 #video-overlay{
-  content:"";
   position:fixed;
   top:0;
   left:0;
@@ -35,31 +34,49 @@ body{
   height:100%;
   background:linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.85));
   z-index:-1;
-  pointer-events:none; /* allow clicks to pass through */
+  pointer-events:none;
 }
 
-/* NAVIGATION */
+/* NAVIGATION WITH LOGO AND ICONS */
 .nav{
   position:fixed;
+  top:0;
   width:100%;
   display:flex;
-  justify-content:center;
-  gap:20px;
-  padding:12px;
+  align-items:center;
+  justify-content:flex-start;
+  gap:40px;
+  padding:12px 20px;
   background:rgba(2,6,23,0.7);
   backdrop-filter:blur(10px);
   z-index:1000;
   flex-wrap:wrap;
 }
 
+.nav .logo{
+  margin-right:30px;
+}
+
 .nav a{
   color:#cbd5f5;
   text-decoration:none;
-  font-size:14px;
+  font-style:italic;
+  font-size:15px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.nav a img{
+  width:20px;
+  height:20px;
+  object-fit:contain;
 }
 
 .nav a:hover{
   color:#ef4444;
+  transform: scale(1.1);
 }
 
 /* SECTIONS */
@@ -228,39 +245,31 @@ p, li{
 
 <div id="video-overlay"></div>
 
+<!-- NAVIGATION WITH LOGO AND ICONS -->
 <div class="nav">
-  <a href="#about">About</a>
-  <a href="#annotation">Annotation</a>
-  <a href="#evaluation">Evaluation</a>
-  <a href="#resume">Resume</a>
-  <a href="#certificate">Certificate</a>
+  <img src="Hillary kusumo Logo.png" alt="Logo" class="logo" height="50">
+  <a href="#about"><img src="Image coding.jpeg" alt="About Icon">About</a>
+  <a href="#annotation"><img src="Images/0.png" alt="Annotation Icon">Annotation</a>
+  <a href="#evaluation"><img src="Images/1.png" alt="Evaluation Icon">Evaluation</a>
+  <a href="#resume"><img src="Resume Hillary Clarence Kusumo (1).pdf" alt="Resume Icon">Resume</a>
+  <a href="#certificate"><img src="Micro 1 Certificate.jpg" alt="Certificate Icon">Certificate</a>
 </div>
 
 <!-- ABOUT ME -->
 <div class="section" id="about">
 <div class="number">01</div>
 <h2>ABOUT ME</h2>
-
 <div class="about-grid">
   <img src="Image coding.jpeg" alt="About Image">
-
   <div>
     <p>Hello, I am Hillary Kusumo. I specialize in data annotation, quality analysis, and virtual assistance. Over the past 5 years, I have developed a strong foundation in structured workflows and rigorous quality standards. My focus is always on delivering precise, actionable results that support AI training and business decision-making.</p>
     <p>I have managed diverse projects from autonomous driving datasets to retail shelf labeling and drone footage segmentation. Each project required me to adapt to different tools, maintain consistency, and handle complex edge cases while keeping high productivity. These experiences strengthened my problem-solving skills and attention to detail.</p>
     <p>I am also passionate about collaboration and continuous learning. I enjoy sharing insights with my peers, mentoring newcomers, and refining processes to improve efficiency.</p>
-
     <div class="contact-links">
-      <a href="https://www.linkedin.com/in/hillary-kusumo-b66913178/" target="_blank">
-        <img src="linkedin Logo.png" alt="LinkedIn">
-      </a>
-      <a href="mailto:clarohilary@gmail.com">
-        <img src="Gmail Logo.png" alt="Email">
-      </a>
-      <a href="tel:+254790931964">
-        <img src="Phone Logo.jpg" alt="Phone">
-      </a>
+      <a href="https://www.linkedin.com/in/hillary-kusumo-b66913178/" target="_blank"><img src="linkedin Logo.png" alt="LinkedIn"></a>
+      <a href="mailto:clarohilary@gmail.com"><img src="Gmail Logo.png" alt="Email"></a>
+      <a href="tel:+254790931964"><img src="Phone Logo.jpg" alt="Phone"></a>
     </div>
-
     <h3>SELECTED PROJECTS:</h3>
     <p><strong>Autonomous Driving Bounding Box and Polygon Annotation – CVAT:</strong> Annotated images and videos for autonomous vehicle training, including bounding boxes and polygons for vehicles, pedestrians, and road objects.</p>
     <p><strong>Retail Shelf Product Labeling and Keypoint Annotation – CloudFactory:</strong> Annotated retail shelf images, labeling products, barcodes, and keypoints for object detection training.</p>
