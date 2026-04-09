@@ -1,314 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hillary Kusumo Portfolio</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #222;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-    }
+<meta charset="UTF-8">
+<title>Hillary Kusumo Portfolio</title>
 
-    header {
-      background-color: #1f1f1f;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#020617;
+  color:white;
+  scroll-behavior:smooth;
+}
 
-    nav {
-      margin-top: 10px;
-    }
+/* VIDEO BACKGROUND */
+#bg-video{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
 
-    nav a {
-      color: #fff;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.2s;
-    }
+body::after{
+  content:"";
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:linear-gradient(to bottom, rgba(2,6,23,0.9), rgba(2,6,23,0.95));
+  z-index:-1;
+}
 
-    nav a:hover {
-      color: #00aaff;
-    }
+/* NAV */
+.nav{
+  position:fixed;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  padding:15px;
+  background:rgba(2,6,23,0.7);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
 
-    .section-title {
-      font-size: 2rem;
-      margin: 40px 0 20px;
-      text-align: center;
-    }
+.nav a{
+  color:#cbd5f5;
+  text-decoration:none;
+}
 
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin: 20px;
-    }
+.nav a:hover{
+  color:#ef4444;
+}
 
-    .card {
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 300px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.2s;
-      text-decoration: none;
-      color: inherit;
-    }
+/* SECTION */
+.section{
+  padding:120px 10%;
+}
 
-    .card:hover {
-      transform: scale(1.05);
-    }
+.number{
+  font-size:50px;
+  color:#ef4444;
+  opacity:0.2;
+}
 
-    .card img, .video-card video {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+h2{color:#ef4444;}
 
-    .card-content, .video-card-content, .image-card-content {
-      padding: 15px;
-    }
+p, li{color:#cbd5f5; line-height:1.6;}
 
-    .card-content h3, .video-card-content h3, .image-card-content h3 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-    }
+.media img, .media video{
+  width:100%;
+  max-width:500px;
+  border-radius:10px;
+}
 
-    .card-content p, .video-card-content p, .image-card-content p {
-      font-size: 0.95rem;
-      line-height: 1.4;
-    }
+/* grids */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
 
-    .about-section {
-      background-color: #fff;
-      border-radius: 12px;
-      padding: 30px;
-      margin: 20px auto;
-      max-width: 900px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+.images-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
 
-    .about-section h2 {
-      margin-top: 0;
-      font-size: 1.8rem;
-    }
+.images-grid img{
+  width:100%;
+  height:120px;
+  object-fit:cover;
+  border-radius:8px;
+}
 
-    .about-section p {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
+.highlight{
+  background:#ef4444;
+  padding:15px;
+  border-radius:8px;
+  margin-top:20px;
+}
 
-    .about-section a {
-      color: #0073b1;
-      text-decoration: none;
-      font-weight: bold;
-    }
+.button-link{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 20px;
+  background:#ef4444;
+  color:white;
+  text-decoration:none;
+  border-radius:6px;
+}
 
-    .projects-list {
-      margin-top: 15px;
-    }
+.button-link:hover{
+  background:#c70000;
+}
 
-    .projects-list li {
-      margin-bottom: 8px;
-    }
-
-    .video-section, .image-section {
-      margin: 40px 20px;
-    }
-
-    .video-card, .image-card {
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 300px;
-      margin: 10px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.2s;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .video-card:hover, .image-card:hover {
-      transform: scale(1.05);
-    }
-
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.8);
-    }
-
-    .modal-content {
-      margin: 50px auto;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 800px;
-      position: relative;
-    }
-
-    .modal-content img {
-      width: 100%;
-      height: auto;
-    }
-
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 28px;
-      font-weight: bold;
-      color: #333;
-      cursor: pointer;
-    }
-
-    .close:hover {
-      color: #00aaff;
-    }
-  </style>
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr;}
+  .images-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
 </head>
+
 <body>
 
-<header>
-  <h1>Hillary Kusumo Portfolio</h1>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#video">Video Evaluation</a>
-    <a href="#image">Image Evaluation</a>
-    <a href="#resume">Resume</a>
-    <a href="#certificate">Certificate</a>
-  </nav>
-</header>
+<video autoplay muted loop playsinline id="bg-video">
+  <source src="Linkedin.mp4">
+</video>
 
-<section id="about" class="about-section">
-  <h2>About Me</h2>
-  <p>Hello, I am Hillary Kusumo, a professional in data annotation, quality analysis, and virtual assistance. I have over 5 years of experience delivering high-quality structured annotation and evaluation projects. You can connect with me on <a href="https://www.linkedin.com/in/hillary-kusumo-b66913178/" target="_blank">LinkedIn</a> or reach me at +254790931964.</p>
-  <h3>Selected Projects:</h3>
-  <ul class="projects-list">
-    <li>Autonomous Driving Bounding Box and Polygon Annotation – CVAT</li>
-    <li>Retail Shelf Product Labeling and Keypoint Annotation – CloudFactory</li>
-    <li>Agricultural Drone Footage Segmentation – CVAT</li>
-    <li>Video and Image QA Evaluation – Structured Rubric Workflows</li>
-  </ul>
-</section>
-
-<section id="video" class="video-section">
-  <h2 class="section-title">Video Evaluation Projects</h2>
-  <div class="card-container">
-    <div class="video-card">
-      <video controls>
-        <source src="video1.mp4" type="video/mp4">
-      </video>
-      <div class="video-card-content">
-        <h3>Video 1 Evaluation</h3>
-        <p>Selected for better audio and natural motion. Includes full rubric scoring, notes, and evaluation criteria.</p>
-      </div>
-    </div>
-    <div class="video-card">
-      <video controls>
-        <source src="video2.mp4" type="video/mp4">
-      </video>
-      <div class="video-card-content">
-        <h3>Video 2 Evaluation</h3>
-        <p>Analysis of video quality, motion accuracy, and annotation consistency.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="image" class="image-section">
-  <h2 class="section-title">Image Evaluation Projects</h2>
-  <div class="card-container">
-    <div class="image-card">
-      <img src="image1.png" alt="Image Evaluation 1">
-      <div class="image-card-content">
-        <h3>Image 1 Evaluation</h3>
-        <p>Includes bounding boxes, polygons, and detailed rubric scoring for quality and accuracy.</p>
-      </div>
-    </div>
-    <div class="image-card">
-      <img src="image2.png" alt="Image Evaluation 2">
-      <div class="image-card-content">
-        <h3>Image 2 Evaluation</h3>
-        <p>Evaluation includes object labeling accuracy and consistency across frames.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="resume">
-  <h2 class="section-title">Resume</h2>
-  <div class="card-container">
-    <div class="card" onclick="openModal('Resume Thumbnail.png')">
-      <img src="Resume Thumbnail.png" alt="Resume Thumbnail">
-      <div class="card-content">
-        <h3>View My Resume</h3>
-        <p>Click to open the full resume detailing my experience, skills, and accomplishments.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="certificate">
-  <h2 class="section-title">Certificate</h2>
-  <div class="card-container">
-    <div class="card" onclick="openModal('Certificate Thumbnail.png')">
-      <img src="Certificate Thumbnail.png" alt="Certificate Thumbnail">
-      <div class="card-content">
-        <h3>View Certificate</h3>
-        <p>Click to open my certificate showcasing professional training and skills.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Modal Overlay -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img id="modal-img" src="" alt="Document View">
-  </div>
+<div class="nav">
+  <a href="#about">About</a>
+  <a href="#annotation">Annotation</a>
+  <a href="#evaluation">Evaluation</a>
+  <a href="#resume">Resume</a>
+  <a href="#certificate">Certificate</a>
 </div>
 
-<script>
-  const modal = document.getElementById('modal');
-  const modalImg = document.getElementById('modal-img');
+<!-- ABOUT ME -->
+<div class="section" id="about">
+<div class="number">01</div>
+<h2>About Me</h2>
+<p>Hello, I am Hillary Kusumo, a professional in data annotation, quality analysis, and virtual assistance. I have over 5 years of experience delivering high-quality structured annotation and evaluation projects. You can connect with me on <a href="https://www.linkedin.com/in/hillary-kusumo-b66913178/" target="_blank">LinkedIn</a> or reach me at +254790931964.</p>
 
-  function openModal(src) {
-    modal.style.display = 'block';
-    modalImg.src = src;
-  }
+<h3>Selected Projects:</h3>
+<ul>
+<li>Autonomous Driving Bounding Box and Polygon Annotation – CVAT</li>
+<li>Retail Shelf Product Labeling and Keypoint Annotation – CloudFactory</li>
+<li>Agricultural Drone Footage Segmentation – CVAT</li>
+<li>Video and Image QA Evaluation – Structured Rubric Workflows</li>
+</ul>
+</div>
 
-  function closeModal() {
-    modal.style.display = 'none';
-    modalImg.src = '';
-  }
+<!-- ANNOTATION -->
+<div class="section" id="annotation">
+<div class="number">02</div>
+<h2>Annotation Project</h2>
 
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      closeModal();
-    }
-  }
-</script>
+<div class="grid">
+
+<div>
+<p>
+Rodeo dataset annotation using bounding boxes and keypoints. Focus on accuracy across frames, handling occlusion, and maintaining object identity.
+</p>
+
+<h3>Key Guidelines</h3>
+<ul>
+<li>Label at 30fps</li>
+<li>Separate rider and horse</li>
+<li>Apply tight bounding boxes</li>
+<li>Track same object across frames</li>
+<li>Handle occlusion correctly</li>
+</ul>
+</div>
+
+<div class="media">
+<video controls>
+<source src="cvat_project.mp4">
+</video>
+</div>
+
+</div>
+
+<h3>Annotated Samples</h3>
+<div class="images-grid">
+<img src="Images/0.png">
+<img src="Images/1.png">
+<img src="Images/2.png">
+<img src="Images/3.png">
+<img src="Images/4.png">
+<img src="Images/5.png">
+<img src="Images/6.png">
+<img src="Images/7.png">
+<img src="Images/8.png">
+</div>
+
+</div>
+
+<!-- EVALUATION -->
+<div class="section" id="evaluation">
+<div class="number">03</div>
+<h2>Video Evaluation</h2>
+
+<div class="grid">
+
+<div class="media">
+<video controls>
+<source src="video 1.mp4">
+</video>
+
+<video controls style="margin-top:10px;">
+<source src="video 2.mp4">
+</video>
+</div>
+
+<div>
+<h3>Evaluation Criteria</h3>
+<ul>
+<li>Motion smoothness</li>
+<li>Frame consistency</li>
+<li>Audio sync</li>
+<li>Visual realism</li>
+</ul>
+
+<h3>Rubric</h3>
+<ul>
+<li>5: Perfect alignment and realism</li>
+<li>4: Minor issues</li>
+<li>3: Noticeable inconsistencies</li>
+<li>2: Major defects</li>
+<li>1: Poor quality</li>
+</ul>
+
+<h3>Result</h3>
+<p>
+Video 1 performed better across all metrics. Motion remained stable. Audio matched visuals. No visible distortions.
+</p>
+
+<div class="highlight">
+Final Decision: Video 1 selected due to better motion quality and synchronization.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- RESUME -->
+<div class="section" id="resume">
+<div class="number">04</div>
+<h2>Resume</h2>
+<p>Click the button below to open my full resume.</p>
+<a class="button-link" href="Resume.pdf" target="_blank">Open Resume</a>
+</div>
+
+<!-- CERTIFICATE -->
+<div class="section" id="certificate">
+<div class="number">05</div>
+<h2>Certificate</h2>
+<p>Click the button below to view my certificate on Rive.</p>
+<a class="button-link" href="https://rive.app/some-certificate-link" target="_blank">Open Certificate</a>
+</div>
 
 </body>
 </html>
