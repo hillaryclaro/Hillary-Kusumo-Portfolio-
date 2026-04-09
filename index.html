@@ -21,10 +21,9 @@ body {
   height:100%;
   object-fit:contain;
   z-index:-2;
-  background:black;
 }
 
-/* DARK OVERLAY */
+/* DARK OVERLAY FOR READABILITY */
 body::after {
   content:"";
   position:fixed;
@@ -32,7 +31,7 @@ body::after {
   left:0;
   width:100%;
   height:100%;
-  background:rgba(2,6,23,0.6);
+  background:rgba(2,6,23,0.5);
   z-index:-1;
 }
 
@@ -117,7 +116,7 @@ body::after {
   border-radius:8px;
 }
 
-/* annotation layout */
+/* annotation side-by-side layout */
 .annotation-flex {
   display:flex;
   gap:20px;
@@ -229,43 +228,48 @@ body::after {
 <h2>Annotation Project</h2>
 
 <div class="annotation-flex">
+  <div class="notes section-box">
+    <h3>Rodeo Video Labeling Notes</h3>
+    <p>This guide covers Barrel Racing (bounding boxes only) and Bull/Bareback/Saddle Bronc Riding (bounding boxes and keypoints) in COCO JSON format. Follow these for high-quality, consistent annotations.</p>
+   
+    <h4>Barrel Racing</h4>
+    <ul>
+      <li>Label at 30fps. Only annotate the actual event between start and finish line.</li>
+      <li>Objects: horse, rider, flag, chalk, barrel (all 3 barrels individually). Rider and horse are separate boxes.</li>
+      <li>Bounding boxes must be tight and axis-aligned. Partial occlusions are allowed; include visible parts.</li>
+      <li>Overlaps: rider overlapping horse is fine. Label each object separately.</li>
+    </ul>
+   
+    <h4>Bull / Bareback / Saddle Bronc Riding</h4>
+    <ul>
+      <li>Label at 30fps. Duration: chute gate opens till 8 seconds or rider falls.</li>
+      <li>Objects: bronc/bull, non-bucking horses, rider, pickup rider. Same ID across frames.</li>
+      <li>Bounding boxes: tight around visible extent. Rider separated from animal if falls.</li>
+      <li>Keypoints: use COCO format. Mark occluded points (visibility=1) if partially hidden.</li>
+      <li>Small objects: apply bounding box and mark “too small” for keypoints.</li>
+      <li>Person keypoints: head, shoulders, elbows, wrists, hips, knees, ankles.</li>
+      <li>Bull/horse keypoints: nose, ears, withers, mid-back, loin, tail base, shoulders, hips, elbows, knees, hooves.</li>
+      <li>Overlapping: assign keypoints to correct object; bounding boxes separate.</li>
+      <li>Motion blur: label normally if visible; if uncertain, mark occluded.</li>
+      <li>Fallen rider: label rider and animal separately with keypoints.</li>
+    </ul>
+  </div>
 
-<div class="notes section-box">
-<h3>Rodeo Video Labeling Notes</h3>
-<p>This guide covers Barrel Racing and Bull/Bareback/Saddle Bronc Riding in COCO JSON format.</p>
-
-<h4>Barrel Racing</h4>
-<ul>
-<li>Label at 30fps</li>
-<li>Objects: horse, rider, barrel</li>
-<li>Tight bounding boxes</li>
-<li>Handle overlaps</li>
-</ul>
-
-<h4>Riding Events</h4>
-<ul>
-<li>Track rider and animal</li>
-<li>Use keypoints</li>
-<li>Mark occlusions</li>
-<li>Separate rider if fall</li>
-</ul>
-
-</div>
-
-<div class="images section-box">
-<h3>Sample Annotated Images</h3>
-
-<div class="video-grid">
-<img src="Images/0.png">
-<img src="Images/1.png">
-<img src="Images/2.png">
-<img src="Images/3.png">
-<img src="Images/4.png">
-<img src="Images/5.png">
-</div>
-
-</div>
-
+  <div class="images section-box">
+    <h3>Sample Annotated Images</h3>
+    <div class="video-grid">
+      <img src="Images/0.png">
+      <img src="Images/1.png">
+      <img src="Images/2.png">
+      <img src="Images/3.png">
+      <img src="Images/4.png">
+      <img src="Images/5.png">
+      <img src="Images/6.png">
+      <img src="Images/7.png">
+      <img src="Images/8.png">
+      <img src="Images/9.png">
+    </div>
+  </div>
 </div>
 
 <div class="section-box">
@@ -283,7 +287,19 @@ body::after {
 
 <div class="section-box">
 <h2>Image & Video Evaluation Project</h2>
-<p>Structured QA workflow applied across images and videos.</p>
+<p>
+In this project I applied structured QA workflows to evaluate both images and videos.
+Focus remained on instruction accuracy, visual quality, and usability.
+</p>
+</div>
+
+<div class="section-box">
+<h3>Image Evaluation</h3>
+<ul>
+<li>Checked defects like banding, distortion, and unrealistic edits</li>
+<li>Compared outputs against prompts</li>
+<li>Selected best image based on realism and clarity</li>
+</ul>
 </div>
 
 <div class="section-box">
@@ -301,8 +317,19 @@ body::after {
 </video>
 </div>
 
+<p>
+Evaluation focused on motion quality, audio clarity, and consistency.
+Video 1 showed smoother transitions across frames.
+Movement remained stable with no abrupt changes.
+Audio stayed aligned with visuals and remained clear throughout.
+
+Video 2 introduced slight inconsistencies in motion and less stable audio sync.
+These differences affected realism and overall viewing quality.
+</p>
+
 <div class="highlight">
-Final Decision: Video 1 selected
+Final Decision: Video 1 selected.  
+Reason: smoother motion, stable transitions, and clear synchronized audio.
 </div>
 
 </div>
@@ -310,21 +337,14 @@ Final Decision: Video 1 selected
 </div>
 
 <script>
-function openOverlay(id){
-  document.getElementById(id).style.display="block"
-}
-
-function closeOverlay(id){
-  document.getElementById(id).style.display="none"
-}
+function openOverlay(id){ document.getElementById(id).style.display="block" }
+function closeOverlay(id){ document.getElementById(id).style.display="none" }
 
 function playSync(){
   const v1=document.getElementById("vid1")
   const v2=document.getElementById("vid2")
-
   v1.currentTime=0
   v2.currentTime=0
-
   v1.play()
   v2.play()
 }
