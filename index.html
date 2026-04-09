@@ -19,7 +19,7 @@ body {
   left:0;
   width:100%;
   height:100%;
-  object-fit:contain; /* FIXED ZOOM */
+  object-fit:contain;
   z-index:-2;
   background:black;
 }
@@ -184,6 +184,7 @@ body::after {
 
 <body>
 
+<!-- VIDEO BACKGROUND -->
 <video autoplay muted loop playsinline id="bg-video">
   <source src="Linkedin.mp4" type="video/mp4">
 </video>
@@ -191,23 +192,27 @@ body::after {
 <div class="content">
 <div class="container">
 
+<!-- Resume -->
 <div class="card">
 <img src="Resume Thumbnail.png">
 <h3>Resume</h3>
 <a href="https://drive.google.com/file/d/1gRUr3Y4En71HGnATofre68AUSJkKgrbN/view" target="_blank">Open</a>
 </div>
 
+<!-- Certificate -->
 <div class="card">
 <img src="Certificate Thumbnail.png">
 <h3>Certificate</h3>
 <a href="https://drive.google.com/file/d/1jIfqd8ttvwceigDHtd4HyttNUr652OtC/view" target="_blank">Open</a>
 </div>
 
+<!-- Annotation -->
 <div class="card" onclick="openOverlay('annotationOverlay')">
 <img src="Images/0.png">
 <h3>Annotation Project</h3>
 </div>
 
+<!-- Evaluation -->
 <div class="card" onclick="openOverlay('evaluationOverlay')">
 <img src="Thumbnail.png">
 <h3>Video & Image Evaluation</h3>
@@ -216,23 +221,75 @@ body::after {
 </div>
 </div>
 
+<!-- ANNOTATION OVERLAY -->
 <div class="overlay" id="annotationOverlay">
 <button class="close-btn" onclick="closeOverlay('annotationOverlay')">Close</button>
 
 <div class="section-box">
 <h2>Annotation Project</h2>
-<p>Structured labeling using bounding boxes and keypoints.</p>
+
+<div class="annotation-flex">
+
+<div class="notes section-box">
+<h3>Rodeo Video Labeling Notes</h3>
+<p>This guide covers Barrel Racing and Bull/Bareback/Saddle Bronc Riding in COCO JSON format.</p>
+
+<h4>Barrel Racing</h4>
+<ul>
+<li>Label at 30fps</li>
+<li>Objects: horse, rider, barrel</li>
+<li>Tight bounding boxes</li>
+<li>Handle overlaps</li>
+</ul>
+
+<h4>Riding Events</h4>
+<ul>
+<li>Track rider and animal</li>
+<li>Use keypoints</li>
+<li>Mark occlusions</li>
+<li>Separate rider if fall</li>
+</ul>
+
+</div>
+
+<div class="images section-box">
+<h3>Sample Annotated Images</h3>
+
+<div class="video-grid">
+<img src="Images/0.png">
+<img src="Images/1.png">
+<img src="Images/2.png">
+<img src="Images/3.png">
+<img src="Images/4.png">
+<img src="Images/5.png">
 </div>
 
 </div>
 
+</div>
+
+<div class="section-box">
+<video controls style="max-width:600px;">
+<source src="cvat_project.mp4">
+</video>
+</div>
+
+</div>
+</div>
+
+<!-- EVALUATION OVERLAY -->
 <div class="overlay" id="evaluationOverlay">
 <button class="close-btn" onclick="closeOverlay('evaluationOverlay')">Close</button>
 
 <div class="section-box">
-<h2>Evaluation Project</h2>
+<h2>Image & Video Evaluation Project</h2>
+<p>Structured QA workflow applied across images and videos.</p>
+</div>
 
-<button class="btn" onclick="playSync()">Play Videos</button>
+<div class="section-box">
+<h3>Video Evaluation</h3>
+
+<button class="btn" onclick="playSync()">Play Both Videos</button>
 
 <div class="video-grid">
 <video id="vid1" controls>
