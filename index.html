@@ -193,12 +193,11 @@ p, li{
 .about-grid img{
   width:100%;
   border-radius:12px;
-  max-width:400px;
   object-fit:cover;
+  max-height:700px; /* Increased height for vertical presence */
   transition: transform 0.5s ease;
 }
 
-/* HOVER EFFECT ON ABOUT IMAGE */
 .about-grid img:hover{
   transform: scale(1.05);
 }
@@ -208,6 +207,7 @@ p, li{
   .grid{grid-template-columns:1fr;}
   .images-grid{grid-template-columns:1fr 1fr;}
   .about-grid{grid-template-columns:1fr;}
+  .about-grid img{max-height:500px;}
 }
 
 @media(max-width:768px){
@@ -227,6 +227,7 @@ p, li{
     flex-direction:column;
     gap:15px;
   }
+  .about-grid img{max-height:400px;}
 }
 </style>
 </head>
