@@ -146,16 +146,34 @@ p, li{
   text-decoration:none;
 }
 
-/* ICON LINKS */
-.contact-link a img{
-  width:25px;
+/* ICON LINKS - HORIZONTAL */
+.contact-links{
+  display:flex;
+  gap:25px;
+  margin-top:20px;
+}
+
+.contact-links a{
+  display:flex;
+  align-items:center;
+  color:#cbd5f5;
+  text-decoration:none;
+  font-weight:bold;
+  transition: transform 0.3s ease;
+}
+
+.contact-links a img{
+  width:28px;
   height:auto;
-  vertical-align:middle;
   margin-right:8px;
   transition: transform 0.3s ease;
 }
 
-.contact-link a:hover img{
+.contact-links a:hover{
+  color:#ef4444;
+}
+
+.contact-links a:hover img{
   transform: scale(1.2);
 }
 
@@ -178,6 +196,10 @@ p, li{
   p, li{font-size:14px; line-height:1.6;}
   .images-grid{grid-template-columns:1fr;}
   .nav{gap:10px;}
+  .contact-links{
+    flex-direction:column;
+    gap:15px;
+  }
 }
 </style>
 </head>
@@ -206,21 +228,17 @@ p, li{
 <p>I have managed diverse projects from autonomous driving datasets to retail shelf labeling and drone footage segmentation. Each project required me to adapt to different tools, maintain consistency, and handle complex edge cases while keeping high productivity. These experiences strengthened my problem-solving skills and attention to detail.</p>
 <p>I am also passionate about collaboration and continuous learning. I enjoy sharing insights with my peers, mentoring newcomers, and refining processes to improve efficiency. Connect with me using the links below:</p>
 
-<p class="contact-link">
+<div class="contact-links">
   <a href="https://www.linkedin.com/in/hillary-kusumo-b66913178/" target="_blank">
-    <img src="Icons/linkedin.svg" alt="LinkedIn"> LinkedIn
+    <img src="Linkedin Logo.png" alt="LinkedIn"> LinkedIn
   </a>
-</p>
-<p class="contact-link">
   <a href="mailto:hillary.kusumo@example.com">
-    <img src="Icons/mail.svg" alt="Email"> Email
+    <img src="Gmail Logo.png" alt="Email"> Email
   </a>
-</p>
-<p class="contact-link">
   <a href="tel:+254790931964">
-    <img src="Icons/phone.svg" alt="Phone"> +254790931964
+    <img src="Phone Logo.jpg" alt="Phone"> +254790931964
   </a>
-</p>
+</div>
 
 <h3>SELECTED PROJECTS:</h3>
 <p><strong>Autonomous Driving Bounding Box and Polygon Annotation – CVAT:</strong> I annotated images and video data for autonomous vehicle training. Responsibilities included accurate bounding boxes and polygons for vehicles, pedestrians, and road objects. This ensures AI models understand complex road environments.</p>
