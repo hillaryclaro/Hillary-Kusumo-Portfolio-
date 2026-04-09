@@ -146,6 +146,19 @@ p, li{
   text-decoration:none;
 }
 
+/* ICON LINKS */
+.contact-link a img{
+  width:25px;
+  height:auto;
+  vertical-align:middle;
+  margin-right:8px;
+  transition: transform 0.3s ease;
+}
+
+.contact-link a:hover img{
+  transform: scale(1.2);
+}
+
 /* MOBILE OPTIMIZATION */
 @media(max-width:1024px){
   .grid{grid-template-columns:1fr;}
@@ -190,34 +203,44 @@ p, li{
 <div class="number">01</div>
 <h2>ABOUT ME</h2>
 <p>Hello, I am Hillary Kusumo. I specialize in data annotation, quality analysis, and virtual assistance. Over the past 5 years, I have developed a strong foundation in structured workflows and rigorous quality standards. My focus is always on delivering precise, actionable results that support AI training and business decision-making.</p>
-<p>In my work, I have managed diverse projects ranging from autonomous driving datasets to retail shelf labeling and drone footage segmentation. Each project required me to adapt to different tools, maintain consistency, and handle complex edge cases while keeping high productivity. These experiences have strengthened my problem-solving skills and attention to detail.</p>
-<p>I am also passionate about collaboration and continuous learning. I enjoy sharing insights with my peers, mentoring newcomers, and refining processes to improve efficiency. You can connect with me on <a href="https://www.linkedin.com/in/hillary-kusumo-b66913178/" target="_blank">LinkedIn</a> or reach me at +254790931964 for any inquiries or collaborations.</p>
+<p>I have managed diverse projects from autonomous driving datasets to retail shelf labeling and drone footage segmentation. Each project required me to adapt to different tools, maintain consistency, and handle complex edge cases while keeping high productivity. These experiences strengthened my problem-solving skills and attention to detail.</p>
+<p>I am also passionate about collaboration and continuous learning. I enjoy sharing insights with my peers, mentoring newcomers, and refining processes to improve efficiency. Connect with me using the links below:</p>
+
+<p class="contact-link">
+  <a href="https://www.linkedin.com/in/hillary-kusumo-b66913178/" target="_blank">
+    <img src="Icons/linkedin.svg" alt="LinkedIn"> LinkedIn
+  </a>
+</p>
+<p class="contact-link">
+  <a href="mailto:hillary.kusumo@example.com">
+    <img src="Icons/mail.svg" alt="Email"> Email
+  </a>
+</p>
+<p class="contact-link">
+  <a href="tel:+254790931964">
+    <img src="Icons/phone.svg" alt="Phone"> +254790931964
+  </a>
+</p>
 
 <h3>SELECTED PROJECTS:</h3>
-
-<p><strong>Autonomous Driving Bounding Box and Polygon Annotation – CVAT:</strong> I worked on annotating images and video data for autonomous vehicle training. My responsibility included creating accurate bounding boxes and polygons for vehicles, pedestrians, and road objects. I ensured that all annotations were precise and consistent, enabling AI models to understand complex road environments accurately.</p>
-
-<p><strong>Retail Shelf Product Labeling and Keypoint Annotation – CloudFactory:</strong> I annotated retail shelf images, labeling products, barcodes, and keypoints for object detection training. This project required maintaining consistency across thousands of images, following strict labeling rules, and ensuring every item was correctly identified for inventory and AI optimization purposes.</p>
-
-<p><strong>Agricultural Drone Footage Segmentation – CVAT:</strong> I segmented drone-captured farmland footage to label crops, irrigation systems, and terrain features. Each frame required careful attention to detail, especially in differentiating overlapping objects. My work ensured high-quality data for AI-driven crop analysis, supporting sustainable farming solutions.</p>
-
-<p><strong>Video and Image QA Evaluation – Structured Rubric Workflows:</strong> I evaluated multiple video and image datasets using structured rubrics. I scored motion, audio sync, and visual consistency, providing feedback and selecting the best content for model training or presentation. This project strengthened my analytical skills and ability to communicate technical findings clearly.</p>
-
+<p><strong>Autonomous Driving Bounding Box and Polygon Annotation – CVAT:</strong> I annotated images and video data for autonomous vehicle training. Responsibilities included accurate bounding boxes and polygons for vehicles, pedestrians, and road objects. This ensures AI models understand complex road environments.</p>
+<p><strong>Retail Shelf Product Labeling and Keypoint Annotation – CloudFactory:</strong> Annotated retail shelf images, labeling products, barcodes, and keypoints for object detection training. Maintained consistency across thousands of images, ensuring AI models correctly identify items.</p>
+<p><strong>Agricultural Drone Footage Segmentation – CVAT:</strong> Segmented drone footage labeling crops, irrigation systems, and terrain features. Each frame required careful attention to detail, especially for overlapping objects. High-quality data enabled AI-driven crop analysis.</p>
+<p><strong>Video and Image QA Evaluation – Structured Rubric Workflows:</strong> Evaluated video and image datasets using structured rubrics. Scored motion, audio sync, and visual consistency, providing feedback and selecting the best content for model training or presentation.</p>
 </div>
 
 <!-- ANNOTATION -->
 <div class="section" id="annotation">
 <div class="number">02</div>
 <h2>ANNOTATION PROJECT</h2>
-<p>In this project, I worked on annotating rodeo event datasets including images and videos. I applied bounding boxes and keypoints to label riders, horses, bulls, and barrels. My goal was to ensure high-quality annotations for machine learning models, focusing on accuracy and consistency.</p>
-<p>I carefully tracked objects across frames, handled occlusions, and separated each subject for precise labeling. Each frame was annotated at 30fps to maintain temporal consistency. Attention to detail was critical to prevent mislabeling and maintain dataset reliability.</p>
-<p>This work sharpened my ability to manage complex datasets, handle repetitive tasks efficiently, and follow structured guidelines. Annotating real-world videos also enhanced my understanding of movement dynamics and spatial relationships, which are crucial for autonomous AI systems.</p>
+<p>In this project, I annotated rodeo event datasets including images and videos using bounding boxes and keypoints. The goal was high-quality annotations for machine learning models.</p>
+<p>I tracked objects across frames, handled occlusions, and separated each subject. Each frame was annotated at 30fps for temporal consistency. Attention to detail prevented mislabeling and ensured dataset reliability.</p>
+<p>This improved my ability to manage complex datasets, handle repetitive tasks efficiently, and understand movement dynamics and spatial relationships.</p>
 
 <div class="grid">
-
 <div>
 <h3>KEY GUIDELINES</h3>
-<p>To maintain consistency, I applied strict labeling rules. Each rider and horse were labeled separately. Tight bounding boxes ensured precise localization. Objects were tracked across frames for continuity, and occlusions were carefully handled to avoid annotation errors.</p>
+<p>Applied strict labeling rules to maintain consistency. Each rider and horse were labeled separately. Tight bounding boxes ensured precision. Objects tracked across frames for continuity, occlusions handled carefully.</p>
 <ul>
 <li>Label at 30fps</li>
 <li>Separate rider and horse</li>
@@ -232,12 +255,10 @@ p, li{
 <source src="cvat_project.mp4">
 </video>
 </div>
-
 </div>
 
 <h3>ANNOTATED SAMPLES</h3>
-<p>The images below demonstrate sample annotations. They highlight the precise bounding boxes and keypoints applied to multiple subjects within each frame. The quality and consistency of these annotations ensure that machine learning models trained on this data can perform reliably in real-world scenarios.</p>
-
+<p>Images demonstrate sample annotations. They highlight precise bounding boxes and keypoints for multiple subjects within each frame.</p>
 <div class="images-grid">
 <img src="Images/0.png">
 <img src="Images/1.png">
@@ -249,24 +270,21 @@ p, li{
 <img src="Images/7.png">
 <img src="Images/8.png">
 </div>
-
 </div>
 
 <!-- EVALUATION -->
 <div class="section" id="evaluation">
 <div class="number">03</div>
 <h2>VIDEO EVALUATION</h2>
-<p>For this project, I evaluated multiple video samples to assess motion quality, audio synchronization, and visual realism. My goal was to identify the most suitable video for training AI systems or client presentations. I followed a structured rubric to ensure objectivity and clarity in evaluation.</p>
-<p>I focused on motion smoothness, frame consistency, and audio alignment for each video. By carefully comparing metrics, I ensured the evaluation was precise and reproducible. This approach helped me systematically determine the best-performing video based on measurable standards.</p>
-<p>Through this process, I learned to balance technical criteria with qualitative assessment. I also improved my ability to document findings clearly, highlight issues, and recommend the best video based on comprehensive evaluation.</p>
+<p>Evaluated multiple video samples to assess motion quality, audio synchronization, and visual realism. Goal was to identify the best video for AI training or presentation. Followed structured rubric for objectivity.</p>
+<p>Focused on motion smoothness, frame consistency, and audio alignment. Compared metrics to determine the best-performing video.</p>
+<p>Balanced technical criteria with qualitative assessment. Documented findings clearly and recommended the best video based on comprehensive evaluation.</p>
 
 <div class="grid">
-
 <div class="media">
 <video controls>
 <source src="video 1.mp4">
 </video>
-
 <video controls style="margin-top:10px;">
 <source src="video 2.mp4">
 </video>
@@ -274,7 +292,7 @@ p, li{
 
 <div>
 <h3>EVALUATION CRITERIA</h3>
-<p>Each criterion was assessed carefully. Motion smoothness evaluated the natural movement of subjects. Frame consistency checked for visual continuity. Audio sync ensured sound matched actions. Visual realism assessed the overall authenticity of the video content. I provided notes for each point to explain why Video 1 scored better.</p>
+<p>Assessed motion smoothness, frame consistency, audio sync, and visual realism. Provided notes for each criterion explaining why Video 1 scored better.</p>
 <ul>
 <li>Motion smoothness</li>
 <li>Frame consistency</li>
@@ -283,7 +301,7 @@ p, li{
 </ul>
 
 <h3>RUBRIC</h3>
-<p>The rubric provided clear scoring guidelines. Each video was rated from 1 to 5 across multiple categories. Scores reflected alignment, realism, and technical quality. Using this rubric, I ensured evaluations were consistent, unbiased, and actionable. Each score included detailed notes to justify decisions.</p>
+<p>Used 1–5 scale for scoring. Scores reflect alignment, realism, and technical quality. Each score included notes justifying decisions.</p>
 <ul>
 <li>5: Perfect alignment and realism</li>
 <li>4: Minor issues</li>
@@ -293,25 +311,20 @@ p, li{
 </ul>
 
 <h3>RESULT</h3>
-<p>After detailed assessment, Video 1 consistently scored higher across all metrics. Its motion was smoother, audio aligned perfectly, and visual fidelity was better. Video 2, while acceptable, had minor inconsistencies that affected its overall score. My final report highlighted these differences and explained why Video 1 was the preferred choice.</p>
+<p>Video 1 scored higher across all metrics. Motion was smoother, audio aligned, and visual fidelity was better. Video 2 had minor inconsistencies affecting the score. Final report highlighted differences.</p>
 
 <div class="highlight">
 Final Decision: Video 1 selected due to better motion quality and synchronization.
 </div>
-
 </div>
-
 </div>
-
 </div>
 
 <!-- RESUME -->
 <div class="section" id="resume">
 <div class="number">04</div>
 <h2>RESUME</h2>
-<p>This section provides access to my professional resume. It highlights my experience, skills, and project work. Reviewing it will give insight into my expertise, work ethic, and accomplishments.</p>
-<p>The resume details my roles in data annotation, quality analysis, and virtual assistance. It emphasizes structured workflow management, attention to detail, and successful project delivery. Reviewing the resume will provide clarity on my key competencies, technical skills, and project contributions.</p>
-<p>It also lists specific software and tools I have mastered, examples of annotated datasets I have worked on, and my ability to implement efficient QA processes. This demonstrates my readiness to contribute to any project requiring meticulous attention to detail and high standards of data quality.</p>
+<p>Access my professional resume highlighting experience, skills, and projects. It shows my work in annotation, QA, and virtual assistance.</p>
 <a href="Resume Hillary Clarence Kusumo (1).pdf" target="_blank" class="button-link">OPEN RESUME</a>
 </div>
 
@@ -319,9 +332,7 @@ Final Decision: Video 1 selected due to better motion quality and synchronizatio
 <div class="section" id="certificate">
 <div class="number">05</div>
 <h2>CERTIFICATE</h2>
-<p>This section showcases a certificate I earned after completing professional training. It validates my skills, commitment, and knowledge in structured annotation and QA evaluation.</p>
-<p>The certificate reflects my achievement in mastering advanced annotation techniques, evaluation standards, and project management. It highlights my ability to handle complex datasets, ensure data integrity, and deliver high-quality outputs consistently.</p>
-<p>Viewing the certificate demonstrates my dedication to professional growth and continuous learning. It serves as tangible proof of my competence and readiness to take on advanced annotation and QA projects with confidence and precision.</p>
+<p>This certificate validates my skills in structured annotation and QA evaluation.</p>
 <a href="Micro 1 Certificate.jpg" target="_blank" class="button-link">OPEN CERTIFICATE</a>
 </div>
 
