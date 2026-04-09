@@ -9,6 +9,7 @@ body {
   margin:0;
   font-family:Arial;
   color:white;
+  background:black;
 }
 
 /* VIDEO BACKGROUND */
@@ -18,11 +19,12 @@ body {
   left:0;
   width:100%;
   height:100%;
-  object-fit:cover;
-  z-index:-1;
+  object-fit:contain; /* FIXED ZOOM */
+  z-index:-2;
+  background:black;
 }
 
-/* DARK OVERLAY FOR READABILITY */
+/* DARK OVERLAY */
 body::after {
   content:"";
   position:fixed;
@@ -182,7 +184,6 @@ body::after {
 
 <body>
 
-<!-- VIDEO BACKGROUND -->
 <video autoplay muted loop playsinline id="bg-video">
   <source src="Linkedin.mp4" type="video/mp4">
 </video>
@@ -215,18 +216,16 @@ body::after {
 </div>
 </div>
 
-<!-- ANNOTATION -->
 <div class="overlay" id="annotationOverlay">
 <button class="close-btn" onclick="closeOverlay('annotationOverlay')">Close</button>
 
 <div class="section-box">
 <h2>Annotation Project</h2>
-<p>Structured labeling using bounding boxes and keypoints. Focus on accuracy, consistency, and edge cases.</p>
+<p>Structured labeling using bounding boxes and keypoints.</p>
 </div>
 
 </div>
 
-<!-- EVALUATION -->
 <div class="overlay" id="evaluationOverlay">
 <button class="close-btn" onclick="closeOverlay('evaluationOverlay')">Close</button>
 
