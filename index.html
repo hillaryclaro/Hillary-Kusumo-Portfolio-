@@ -128,7 +128,7 @@ p, li{
   gap:15px;
 }
 
-/* IMAGES GRID */
+/* IMAGE GRID SMALL */
 .images-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -140,8 +140,46 @@ p, li{
   height:120px;
   object-fit:cover;
   border-radius:8px;
+  cursor:pointer;
+  transition:transform 0.3s;
 }
 
+.images-grid img:hover{
+  transform:scale(1.05);
+}
+
+/* IMAGE EVAL GRID (NEW) */
+.eval-images{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-top:20px;
+}
+
+.eval-images img{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+  border-radius:10px;
+  cursor:pointer;
+  transition:transform 0.3s;
+}
+
+.eval-images img:hover{
+  transform:scale(1.03);
+}
+
+/* BADGE */
+.badge{
+  display:inline-block;
+  background:#ef4444;
+  padding:6px 12px;
+  border-radius:6px;
+  font-size:14px;
+  margin-top:8px;
+}
+
+/* HIGHLIGHT */
 .highlight{
   background:#ef4444;
   padding:15px;
@@ -149,6 +187,7 @@ p, li{
   margin-top:20px;
 }
 
+/* BUTTON */
 .button-link{
   display:inline-block;
   margin-top:15px;
@@ -157,6 +196,14 @@ p, li{
   color:white;
   text-decoration:none;
   border-radius:6px;
+  font-family:'Verdana', Geneva, Tahoma, sans-serif;
+  font-weight:bold;
+}
+
+.button-link:hover{
+  background:#c70000;
+  color:white;
+  text-decoration:none;
 }
 
 /* ICON LINKS */
@@ -171,15 +218,17 @@ p, li{
   width:40px;
   height:40px;
   object-fit:contain;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease;
   cursor:pointer;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
 }
 
 .contact-links a img:hover{
   transform: scale(1.2);
+  filter: brightness(1.8);
 }
 
-/* ABOUT */
+/* ABOUT GRID */
 .about-grid{
   display:grid;
   grid-template-columns:1fr 2fr;
@@ -188,170 +237,193 @@ p, li{
   margin-top:20px;
 }
 
-/* IMAGE EVALUATION STYLE */
-.eval-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-  margin-top:20px;
-}
-
-.eval-card{
-  position:relative;
-}
-
-.eval-card img{
+.about-grid img{
   width:100%;
-  max-width:450px;
-  height:300px;
+  border-radius:12px;
   object-fit:cover;
-  border-radius:10px;
+  max-height:700px;
+  transition: transform 0.5s ease;
 }
 
-.badge{
-  position:absolute;
-  top:10px;
-  left:10px;
-  background:#ef4444;
-  padding:6px 12px;
-  font-size:12px;
-  border-radius:6px;
+.about-grid img:hover{
+  transform: scale(1.05);
 }
 
+/* MOBILE OPTIMIZATION */
+@media(max-width:1024px){
+  .grid{grid-template-columns:1fr;}
+  .images-grid{grid-template-columns:1fr 1fr;}
+  .about-grid{grid-template-columns:1fr;}
+  .about-grid img{max-height:500px;}
+}
+
+@media(max-width:768px){
+  body{font-size:15px;}
+  .section{padding:80px 6%;}
+  .number{font-size:40px;}
+  .nav a{font-size:16px; margin:5px;}
+}
+
+@media(max-width:480px){
+  .section{padding:60px 4%;}
+  .number{font-size:35px;}
+  p, li{font-size:14px; line-height:1.6;}
+  .images-grid{grid-template-columns:1fr;}
+  .eval-images{grid-template-columns:1fr;}
+  .contact-links{
+    flex-direction:row;
+    gap:15px;
+  }
+  .about-grid img{max-height:400px;}
+}
 </style>
 </head>
 
 <body>
 
-<video autoplay muted loop id="bg-video">
-<source src="Linkedin.mp4">
+<video autoplay muted loop playsinline id="bg-video">
+  <source src="Linkedin.mp4">
 </video>
 <div id="video-overlay"></div>
 
-<!-- NAV -->
 <div class="nav">
-<div class="logo">HILLARY KUSUMO</div>
-<div class="tabs">
-<a href="#about">About</a>
-<a href="#annotation">Annotation</a>
-<a href="#evaluation">Evaluation</a>
-<a href="#resume">Resume</a>
-<a href="#certificate">Certificate</a>
-</div>
+  <div class="logo">HILLARY KUSUMO</div>
+  <div class="tabs">
+    <a href="#about">About</a>
+    <a href="#annotation">Annotation</a>
+    <a href="#image-eval">Image Eval</a>
+    <a href="#evaluation">Video Eval</a>
+    <a href="#resume">Resume</a>
+    <a href="#certificate">Certificate</a>
+  </div>
 </div>
 
-<!-- ABOUT -->
+<!-- ABOUT SECTION -->
 <div class="section" id="about">
 <div class="number">01</div>
 <h2>ABOUT ME</h2>
 <div class="about-grid">
-<img src="Image coding.jpeg">
-<div>
-<p>Hello, I am Hillary Kusumo. I specialize in data annotation, QA, and virtual assistance. Over 5 years experience in structured datasets and AI workflows.</p>
-</div>
+  <img src="Image coding.jpeg" alt="About Image">
+  <div>
+    <p>Hello, I am Hillary Kusumo. I specialize in data annotation, quality analysis, and virtual assistance. Over the past 5 years, I have developed a strong foundation in structured workflows and rigorous quality standards. My focus is always on delivering precise, actionable results that support AI training and business decision-making.</p>
+    <p>I have managed diverse projects from autonomous driving datasets to retail shelf labeling and drone footage segmentation. Each project required me to adapt to different tools, maintain consistency, and handle complex edge cases while keeping high productivity. These experiences strengthened my problem-solving skills and attention to detail.</p>
+    <p>I am also passionate about collaboration and continuous learning. I enjoy sharing insights with my peers, mentoring newcomers, and refining processes to improve efficiency.</p>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/hillary-kusumo-b66913178/" target="_blank"><img src="linkedin Logo.png"></a>
+      <a href="mailto:clarohilary@gmail.com"><img src="Gmail Logo.png"></a>
+      <a href="tel:+254790931964"><img src="Phone Logo.jpg"></a>
+    </div>
+  </div>
 </div>
 </div>
 
-<!-- ANNOTATION -->
+<!-- ANNOTATION SECTION -->
 <div class="section" id="annotation">
 <div class="number">02</div>
 <h2>ANNOTATION PROJECT</h2>
+<p>This project involved annotating rodeo datasets...</p>
 
 <div class="images-grid">
 <img src="Images/0.png">
 <img src="Images/1.png">
 <img src="Images/2.png">
-<img src="Images/3.png">
-<img src="Images/4.png">
-<img src="Images/5.png">
-<img src="Images/6.png">
-<img src="Images/7.png">
-<img src="Images/8.png">
+</div>
+</div>
+
+<!-- IMAGE EVALUATION (ADDED) -->
+<div class="section" id="image-eval">
+<div class="number">03</div>
+<h2>IMAGE EVALUATION</h2>
+
+<p>
+I evaluate image editing tasks by comparing two edited outputs from the same original image. I review instruction alignment, visual quality, and realism. I place myself in the role of the user requesting the edit and choose the output I would prefer to share.
+</p>
+
+<div class="eval-images">
+<div>
+<img src="Image 1.png" onclick="window.open('Image 1.png')">
+<div class="badge">Image 1</div>
+<p>
+Image 1 follows the prompt with strong composition balance. The subject remains clear, and the edits preserve structure without distortion. Visual consistency remains stable across the frame.
+</p>
+</div>
+
+<div>
+<img src="Image 2.png" onclick="window.open('Image 2.png')">
+<div class="badge">Image 2</div>
+<p>
+Image 2 follows the prompt but introduces weaker structural alignment. Some elements lose clarity and reduce visual impact compared to Image 1.
+</p>
+</div>
+</div>
+
+<div class="highlight">
+Final Decision: Image 1 delivers stronger instruction alignment, clearer composition, and better visual coherence.
 </div>
 </div>
 
 <!-- VIDEO EVALUATION -->
 <div class="section" id="evaluation">
-<div class="number">03</div>
-
+<div class="number">04</div>
 <h2>VIDEO EVALUATION</h2>
 
 <p>
-I evaluate two edited videos by comparing motion quality, audio sync, visual consistency, and overall alignment with the editing prompt from a first person perspective.
+Video Edit Guidelines: I evaluate video pairs by placing myself in the user’s position. I compare two edited outputs from the same original video. I review motion quality, visual consistency, audio sync, and relevance to the prompt.
 </p>
 
+<!-- REST OF YOUR ORIGINAL VIDEO SECTION STAYS EXACTLY SAME -->
 <div class="grid">
-<div class="media">
-<video controls src="video 1.mp4"></video>
-<video controls style="margin-top:10px;" src="video 2.mp4"></video>
-</div>
+  <div class="media">
+    <video controls>
+      <source src="video 1.mp4">
+    </video>
+    <video controls style="margin-top:10px;">
+      <source src="video 2.mp4">
+    </video>
+  </div>
 
-<div>
-<h3>Evaluation Criteria</h3>
-<ul>
-<li>Motion smoothness: Video 1 shows better continuity</li>
-<li>Frame consistency: Video 1 is more stable</li>
-<li>Audio sync: Video 1 aligns better</li>
-<li>Visual realism: Video 1 performs stronger</li>
-</ul>
+  <div>
+    <h3>Evaluation Criteria</h3>
+    <ul>
+      <li>Motion smoothness: Video 1 had better frame-to-frame continuity, avoiding jitter.</li>
+      <li>Frame consistency: Video 1 maintained visual quality across all frames.</li>
+      <li>Audio sync: Video 1 matched sound with action more accurately.</li>
+      <li>Visual realism: Lighting, shadows, and movement were realistic in Video 1.</li>
+    </ul>
 
-<div class="highlight">
-Final Decision: Video 1 selected
-</div>
-</div>
-</div>
+    <h3>Rubric</h3>
+    <ul>
+      <li>5: Perfect alignment and realism</li>
+      <li>4: Minor issues</li>
+      <li>3: Noticeable inconsistencies</li>
+      <li>2: Major defects</li>
+      <li>1: Poor quality</li>
+    </ul>
 
-<!-- IMAGE EVALUATION ADDED -->
-<h2 style="margin-top:60px;">IMAGE EVALUATION</h2>
+    <h3>Result</h3>
+    <p>Video 1 performed better across all metrics. Motion remained stable, audio matched visuals, and there were no visible distortions.</p>
 
-<p>
-I evaluate two edited images based on a prompt and original image. I compare instruction following, realism, structure preservation, and visual quality from a first person perspective.
-</p>
-
-<div class="grid">
-<div>
-<ol>
-<li>I check how well each image follows the editing prompt.</li>
-<li>I assess realism and visual clarity independently.</li>
-<li>I compare structure consistency from the original image.</li>
-<li>I evaluate artifacts, distortions, and errors.</li>
-<li>I select the image that best satisfies the prompt.</li>
-</ol>
-</div>
-
-<div class="eval-grid">
-
-<div class="eval-card">
-<div class="badge">Image 1</div>
-<img src="Image 1.png">
-</div>
-
-<div class="eval-card">
-<div class="badge">Image 2</div>
-<img src="Image 2.png">
-</div>
-
+    <div class="highlight">
+      Final Decision: Video 1 selected due to better motion quality and synchronization.
+    </div>
+  </div>
 </div>
 </div>
 
-<div class="highlight">
-Final Decision: Image 1 performs better in prompt alignment and visual quality.
-</div>
-
-<!-- RESUME -->
+<!-- RESUME SECTION -->
 <div class="section" id="resume">
-<div class="number">04</div>
+<div class="number">05</div>
 <h2>RESUME</h2>
 <p>Click the button below to view or download my full resume.</p>
-<a href="Resume Hillary Clarence Kusumo (1).pdf" class="button-link">Open Resume</a>
+<a href="Resume Hillary Clarence Kusumo (1).pdf" target="_blank" class="button-link">Open Resume</a>
 </div>
 
-<!-- CERTIFICATE -->
+<!-- CERTIFICATE SECTION -->
 <div class="section" id="certificate">
-<div class="number">05</div>
+<div class="number">06</div>
 <h2>CERTIFICATE</h2>
 <p>Click the button below to view my Micro 1 Certificate.</p>
-<a href="Micro 1 Certificate.jpg" class="button-link">Open Certificate</a>
+<a href="Micro 1 Certificate.jpg" target="_blank" class="button-link">Open Certificate</a>
 </div>
 
 </body>
