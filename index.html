@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Hillary Kusumo Portfolio</title>
+
 <style>
 body{
   margin:0;
@@ -10,28 +11,22 @@ body{
   background:#020617;
   color:white;
   scroll-behavior:smooth;
-  position:relative;
 }
 
-/* VIDEO BACKGROUND */
+/* BACKGROUND */
 #bg-video{
   position:fixed;
-  top:0;
-  left:0;
   width:100%;
   height:100%;
   object-fit:cover;
   z-index:-2;
 }
 
-/* OVERLAY */
 #video-overlay{
   position:fixed;
-  top:0;
-  left:0;
   width:100%;
   height:100%;
-  background:linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.85));
+  background:rgba(0,0,0,0.85);
   z-index:-1;
 }
 
@@ -43,33 +38,23 @@ body{
   display:flex;
   align-items:center;
   padding:12px 20px;
-  background:rgba(2,6,23,0.7);
-  backdrop-filter:blur(10px);
-  z-index:1000;
+  background:rgba(0,0,0,0.6);
 }
 
-.nav .logo{
-  font-size:28px;
-  font-weight:bold;
+.logo{
+  font-size:26px;
   color:#ef4444;
-  margin-right:50px;
+  margin-right:40px;
 }
 
-.nav .tabs{
+.tabs{
   display:flex;
-  justify-content:center;
-  flex:1;
-  gap:40px;
+  gap:30px;
 }
 
-.nav a{
+.tabs a{
   color:#cbd5f5;
   text-decoration:none;
-  font-size:18px;
-}
-
-.nav a:hover{
-  color:#ef4444;
 }
 
 /* SECTIONS */
@@ -77,33 +62,22 @@ body{
   padding:100px 8%;
 }
 
-.number{
-  font-size:45px;
+h2{
   color:#ef4444;
-  opacity:0.2;
-}
-
-h2,h3{
-  color:#ef4444;
-}
-
-p, li{
-  color:#cbd5f5;
-  line-height:1.8;
-}
-
-/* MEDIA */
-.media img, .media video{
-  width:100%;
-  max-width:500px;
-  border-radius:10px;
 }
 
 /* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:1fr 1fr;
   gap:20px;
+}
+
+/* MEDIA */
+video, img{
+  width:100%;
+  max-width:500px;
+  border-radius:10px;
 }
 
 /* IMAGE PAIR */
@@ -117,101 +91,101 @@ p, li{
   flex:1;
 }
 
-.image-card img{
-  width:100%;
-  max-width:500px;
-  border-radius:10px;
-}
-
-/* BADGE */
 .badge{
   position:absolute;
   top:10px;
   left:10px;
   background:#ef4444;
   padding:5px 10px;
-  font-size:14px;
   border-radius:5px;
+  font-size:13px;
 }
 
-/* FINAL DECISION */
+/* FINAL */
 .highlight{
   background:#ef4444;
   padding:15px;
-  border-radius:8px;
   margin-top:20px;
+  border-radius:8px;
 }
 
-/* RESUME + CERT */
+/* RESUME ROW */
 .flex-row{
   display:flex;
   gap:40px;
-  flex-wrap:wrap;
 }
 
 .card{
   flex:1;
-  min-width:300px;
 }
 
-/* BUTTON */
 .button-link{
-  display:inline-block;
-  margin-top:15px;
-  padding:10px 20px;
   background:#ef4444;
+  padding:10px 20px;
   color:white;
   text-decoration:none;
-  border-radius:6px;
+  border-radius:5px;
+  display:inline-block;
+  margin-top:10px;
 }
 </style>
 </head>
 
 <body>
 
-<video autoplay muted loop playsinline id="bg-video">
-  <source src="Linkedin.mp4">
+<video autoplay muted loop id="bg-video">
+<source src="Linkedin.mp4">
 </video>
 <div id="video-overlay"></div>
 
 <div class="nav">
-  <div class="logo">HILLARY KUSUMO</div>
-  <div class="tabs">
-    <a href="#about">About</a>
-    <a href="#annotation">Annotation</a>
-    <a href="#evaluation">Evaluation</a>
-    <a href="#resume">Resume</a>
-    <a href="#certificate">Certificate</a>
-  </div>
+<div class="logo">HILLARY KUSUMO</div>
+<div class="tabs">
+<a href="#about">About</a>
+<a href="#annotation">Annotation</a>
+<a href="#evaluation">Evaluation</a>
+<a href="#resume">Resume</a>
+<a href="#certificate">Certificate</a>
+</div>
 </div>
 
 <!-- ABOUT -->
 <div class="section" id="about">
-<div class="number">01</div>
-<h2>ABOUT ME</h2>
-<p>Hello, I am Hillary Kusumo. I specialize in data annotation and evaluation.</p>
+<h2>ABOUT</h2>
+<p>I specialize in data annotation, quality analysis, and evaluation. I focus on accuracy, consistency, and clear outputs.</p>
 </div>
 
 <!-- ANNOTATION -->
 <div class="section" id="annotation">
-<div class="number">02</div>
-<h2>ANNOTATION PROJECT</h2>
-<div class="media">
+<h2>ANNOTATION</h2>
+
+<div class="grid">
+<div>
+<ul>
+<li>Label at 30fps</li>
+<li>Track objects across frames</li>
+<li>Apply tight bounding boxes</li>
+</ul>
+</div>
+
+<div>
 <video controls>
 <source src="cvat_project.mp4">
 </video>
 </div>
 </div>
 
+</div>
+
 <!-- EVALUATION -->
 <div class="section" id="evaluation">
-<div class="number">03</div>
 <h2>VIDEO EVALUATION</h2>
 
-<div class="media">
+<div>
 <video controls>
 <source src="video 1.mp4">
 </video>
+
 <video controls>
 <source src="video 2.mp4">
 </video>
@@ -220,19 +194,19 @@ p, li{
 <h3>IMAGE EVALUATION</h3>
 
 <p>
-Image A delivers the nationalist poster with stronger dramatic atmosphere, sharper composition, and better alignment with the prompt.
+Image A delivers stronger composition, clearer structure, and better alignment with the prompt.
 </p>
 
 <div class="grid">
 <div>
 <ul>
-<li>Evaluate each question independently. Each metric is judged on its own.</li>
-<li>Check instruction accuracy. The output must reflect the prompt.</li>
-<li>Identify defects. Look for distortions and artifacts.</li>
-<li>Avoid ties. Select the stronger image.</li>
-<li>Select overall best. Choose the most usable result.</li>
-<li>Reject poor quality. Avoid images with major flaws.</li>
-<li>Prefer realism unless style is specified.</li>
+<li>Evaluate each question independently. Each score stands on its own.</li>
+<li>Check instruction accuracy. The edit must match the prompt exactly.</li>
+<li>Identify defects. Look for distortions, missing parts, or noise.</li>
+<li>Avoid ties. Pick the stronger result unless both are equal.</li>
+<li>Select overall best. Choose what you would present to a client.</li>
+<li>Reject poor quality. Avoid images with major flaws or watermarks.</li>
+<li>Prefer realism. Natural results take priority unless style is required.</li>
 </ul>
 </div>
 
@@ -250,22 +224,24 @@ Image A delivers the nationalist poster with stronger dramatic atmosphere, sharp
 </div>
 
 <div class="highlight">
-Final Decision: Image 1 selected due to better composition, clarity, and instruction alignment.
+Final Decision: Image 1 selected due to better quality and alignment with the prompt.
 </div>
 
 </div>
 
-<!-- RESUME + CERTIFICATE -->
+<!-- RESUME + CERT -->
 <div class="section flex-row">
+
 <div class="card" id="resume">
 <h2>RESUME</h2>
-<a href="Resume Hillary Clarence Kusumo (1).pdf" target="_blank" class="button-link">Open Resume</a>
+<a href="Resume Hillary Clarence Kusumo (1).pdf" class="button-link">Open Resume</a>
 </div>
 
 <div class="card" id="certificate">
 <h2>CERTIFICATE</h2>
-<a href="Micro 1 Certificate.jpg" target="_blank" class="button-link">Open Certificate</a>
+<a href="Micro 1 Certificate.jpg" class="button-link">Open Certificate</a>
 </div>
+
 </div>
 
 </body>
