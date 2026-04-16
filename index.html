@@ -106,12 +106,40 @@ p, li{
   gap:20px;
 }
 
-/* IMAGE FIX */
-.image-large{
+/* IMAGE PAIR */
+.image-pair{
+  display:flex;
+  gap:20px;
+}
+
+.image-card{
+  position:relative;
+  flex:1;
+}
+
+.image-card img{
   width:100%;
   max-width:500px;
-  height:auto;
   border-radius:10px;
+}
+
+/* BADGE */
+.badge{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:#ef4444;
+  padding:5px 10px;
+  font-size:14px;
+  border-radius:5px;
+}
+
+/* FINAL DECISION */
+.highlight{
+  background:#ef4444;
+  padding:15px;
+  border-radius:8px;
+  margin-top:20px;
 }
 
 /* RESUME + CERT */
@@ -157,57 +185,87 @@ p, li{
   </div>
 </div>
 
+<!-- ABOUT -->
+<div class="section" id="about">
+<div class="number">01</div>
+<h2>ABOUT ME</h2>
+<p>Hello, I am Hillary Kusumo. I specialize in data annotation and evaluation.</p>
+</div>
+
+<!-- ANNOTATION -->
+<div class="section" id="annotation">
+<div class="number">02</div>
+<h2>ANNOTATION PROJECT</h2>
+<div class="media">
+<video controls>
+<source src="cvat_project.mp4">
+</video>
+</div>
+</div>
+
 <!-- EVALUATION -->
 <div class="section" id="evaluation">
+<div class="number">03</div>
 <h2>VIDEO EVALUATION</h2>
 
-<div class="grid">
-  <div class="media">
-    <video controls>
-      <source src="video 1.mp4">
-    </video>
-    <video controls>
-      <source src="video 2.mp4">
-    </video>
-  </div>
+<div class="media">
+<video controls>
+<source src="video 1.mp4">
+</video>
+<video controls>
+<source src="video 2.mp4">
+</video>
 </div>
 
 <h3>IMAGE EVALUATION</h3>
-<p>Image A delivers stronger composition and alignment with the prompt.</p>
+
+<p>
+Image A delivers the nationalist poster with stronger dramatic atmosphere, sharper composition, and better alignment with the prompt.
+</p>
 
 <div class="grid">
-  <div>
-    <ul>
-      <li>Evaluate each question independently with focus on accuracy.</li>
-      <li>Check if edits match the prompt.</li>
-      <li>Identify defects such as distortions.</li>
-      <li>Avoid ties and pick the stronger result.</li>
-      <li>Select best based on clarity.</li>
-      <li>Reject images with major issues.</li>
-      <li>Prefer realistic outputs.</li>
-    </ul>
-  </div>
-
-  <div>
-    <img src="Image 1.png" class="image-large">
-    <img src="Image 2.png" class="image-large" style="margin-top:10px;">
-  </div>
+<div>
+<ul>
+<li>Evaluate each question independently. Each metric is judged on its own.</li>
+<li>Check instruction accuracy. The output must reflect the prompt.</li>
+<li>Identify defects. Look for distortions and artifacts.</li>
+<li>Avoid ties. Select the stronger image.</li>
+<li>Select overall best. Choose the most usable result.</li>
+<li>Reject poor quality. Avoid images with major flaws.</li>
+<li>Prefer realism unless style is specified.</li>
+</ul>
 </div>
+
+<div class="image-pair">
+<div class="image-card">
+<div class="badge">Image 1</div>
+<img src="Image 1.png">
+</div>
+
+<div class="image-card">
+<div class="badge">Image 2</div>
+<img src="Image 2.png">
+</div>
+</div>
+</div>
+
+<div class="highlight">
+Final Decision: Image 1 selected due to better composition, clarity, and instruction alignment.
+</div>
+
 </div>
 
 <!-- RESUME + CERTIFICATE -->
 <div class="section flex-row">
-  
-  <div class="card" id="resume">
-    <h2>RESUME</h2>
-    <a href="Resume Hillary Clarence Kusumo (1).pdf" target="_blank" class="button-link">Open Resume</a>
-  </div>
+<div class="card" id="resume">
+<h2>RESUME</h2>
+<a href="Resume Hillary Clarence Kusumo (1).pdf" target="_blank" class="button-link">Open Resume</a>
+</div>
 
-  <div class="card" id="certificate">
-    <h2>CERTIFICATE</h2>
-    <a href="Micro 1 Certificate.jpg" target="_blank" class="button-link">Open Certificate</a>
-  </div>
-
+<div class="card" id="certificate">
+<h2>CERTIFICATE</h2>
+<a href="Micro 1 Certificate.jpg" target="_blank" class="button-link">Open Certificate</a>
+</div>
 </div>
 
 </body>
