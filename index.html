@@ -141,44 +141,11 @@ p, li{
   border-radius:8px;
 }
 
-/* IMAGE EVALUATION ADD */
-.image-pair{
-  display:flex;
-  gap:20px;
-  margin-top:10px;
-}
-
-.image-box{
-  position:relative;
-}
-
-.image-box img{
-  width:220px;
-  height:150px;
-  object-fit:cover;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,0.2);
-  cursor:pointer;
-}
-
-.badge{
-  position:absolute;
-  top:8px;
-  left:8px;
-  background:#ef4444;
-  padding:5px 10px;
-  font-size:12px;
-  border-radius:6px;
-}
-
-/* SAME RESULT STYLE AS VIDEO */
 .highlight{
   background:#ef4444;
   padding:15px;
   border-radius:8px;
   margin-top:20px;
-  font-size:16px;
-  line-height:1.6;
 }
 
 .button-link{
@@ -242,6 +209,43 @@ p, li{
   transform: scale(1.05);
 }
 
+/* IMAGE EVAL ADDED */
+.eval-images{
+  display:flex;
+  gap:20px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+
+.eval-box{
+  position:relative;
+}
+
+.eval-box img{
+  width:220px;
+  height:150px;
+  object-fit:cover;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.badge{
+  position:absolute;
+  top:8px;
+  left:8px;
+  background:#ef4444;
+  padding:5px 10px;
+  font-size:12px;
+  border-radius:6px;
+}
+
+.eval-result{
+  background:#ef4444;
+  padding:15px;
+  border-radius:8px;
+  margin-top:20px;
+}
+
 /* MOBILE OPTIMIZATION */
 @media(max-width:1024px){
   .grid{grid-template-columns:1fr;}
@@ -276,7 +280,6 @@ p, li{
 <video autoplay muted loop playsinline id="bg-video">
   <source src="Linkedin.mp4">
 </video>
-
 <div id="video-overlay"></div>
 
 <!-- NAVIGATION -->
@@ -298,7 +301,9 @@ p, li{
 <div class="about-grid">
   <img src="Image coding.jpeg" alt="About Image">
   <div>
-    <p>Hello, I am Hillary Kusumo. I specialize in data annotation, quality analysis, and virtual assistance. Over the past 5 years, I have developed strong structured workflows and quality standards.</p>
+    <p>Hello, I am Hillary Kusumo. I specialize in data annotation, quality analysis, and virtual assistance. Over the past 5 years, I have developed a strong foundation in structured workflows and rigorous quality standards. My focus is always on delivering precise, actionable results that support AI training and business decision-making.</p>
+    <p>I have managed diverse projects from autonomous driving datasets to retail shelf labeling and drone footage segmentation. Each project required me to adapt to different tools, maintain consistency, and handle complex edge cases while keeping high productivity. These experiences strengthened my problem-solving skills and attention to detail.</p>
+    <p>I am also passionate about collaboration and continuous learning. I enjoy sharing insights with my peers, mentoring newcomers, and refining processes to improve efficiency.</p>
   </div>
 </div>
 </div>
@@ -307,7 +312,7 @@ p, li{
 <div class="section" id="annotation">
 <div class="number">02</div>
 <h2>ANNOTATION PROJECT</h2>
-<p>This project involved bounding box and segmentation annotation work.</p>
+<p>This project involved annotating rodeo datasets with bounding boxes and keypoints. I focused on maintaining object identity across frames, handling occlusion, and applying tight bounding boxes for precision. Accuracy was critical for AI training.</p>
 
 <div class="images-grid">
 <img src="Images/0.png">
@@ -336,14 +341,15 @@ p, li{
   <div>
     <h3>Evaluation Criteria</h3>
     <ul>
-      <li>Motion smoothness</li>
-      <li>Frame consistency</li>
-      <li>Audio sync</li>
-      <li>Visual realism</li>
+      <li>Motion smoothness: Video 1 performed better continuity.</li>
+      <li>Frame consistency: Video 1 stable output.</li>
+      <li>Audio sync: Video 1 stronger alignment.</li>
+      <li>Visual realism: Video 1 higher quality rendering.</li>
     </ul>
 
+    <h3>Result</h3>
     <div class="highlight">
-      Video 1 performed better across all metrics.
+      Video 1 selected due to better motion and synchronization.
     </div>
   </div>
 </div>
@@ -354,53 +360,49 @@ p, li{
 <div class="grid">
   <div>
     <ul>
-      <li>Image 1 shows stronger composition with clearer structure and better alignment to the prompt.</li>
-      <li>Image 2 shows weaker lighting consistency with minor distortion in generated elements.</li>
-      <li>Image 1 follows instruction more accurately with better object placement and balance.</li>
-      <li>Image 2 includes minor artifacts that reduce realism and clarity.</li>
-      <li>Overall comparison favors Image 1 due to higher visual stability and accuracy.</li>
+      <li>Image 1 shows stronger composition and prompt alignment. Objects appear correctly structured and visually stable.</li>
+      <li>Image 2 shows weaker coherence. Some elements appear less aligned with instruction intent.</li>
+      <li>Image 1 shows better lighting consistency. Shadows and depth feel more natural.</li>
+      <li>Image 2 contains minor distortions and less stable detail rendering.</li>
+      <li>Final decision favors Image 1 due to higher accuracy and visual stability.</li>
     </ul>
   </div>
 
-  <div class="image-pair">
+  <div class="eval-images">
 
-    <div class="image-box">
+    <div class="eval-box">
       <div class="badge">Image 1</div>
-      <a href="Image 1.png" target="_blank">
-        <img src="Image 1.png">
-      </a>
+      <img src="Image 1.png">
     </div>
 
-    <div class="image-box">
+    <div class="eval-box">
       <div class="badge">Image 2</div>
-      <a href="Image 2.png" target="_blank">
-        <img src="Image 2.png">
-      </a>
+      <img src="Image 2.png">
     </div>
 
   </div>
 </div>
 
-<div class="highlight">
-Image 1 selected due to stronger composition, higher prompt alignment, and better visual consistency.
+<div class="eval-result">
+Final Decision: Image 1 selected due to stronger composition, better instruction alignment, and higher visual stability.
 </div>
 
 </div>
 
-<!-- RESUME -->
+<!-- RESUME SECTION -->
 <div class="section" id="resume">
 <div class="number">04</div>
 <h2>RESUME</h2>
-<p>Click to view resume.</p>
-<a href="Resume Hillary Clarence Kusumo (1).pdf" class="button-link">Open Resume</a>
+<p>Click the button below to view or download my full resume.</p>
+<a href="Resume Hillary Clarence Kusumo (1).pdf" target="_blank" class="button-link">Open Resume</a>
 </div>
 
-<!-- CERTIFICATE -->
+<!-- CERTIFICATE SECTION -->
 <div class="section" id="certificate">
 <div class="number">05</div>
 <h2>CERTIFICATE</h2>
-<p>Click to view certificate.</p>
-<a href="Micro 1 Certificate.jpg" class="button-link">Open Certificate</a>
+<p>Click the button below to view my Micro 1 Certificate.</p>
+<a href="Micro 1 Certificate.jpg" target="_blank" class="button-link">Open Certificate</a>
 </div>
 
 </body>
